@@ -533,6 +533,192 @@ correo.value.includes("@"); // true</pre>
         </div>
       </section>
     </main>
+
+    <!-- ===================================================
+           CAMBIO DE HOY (Clase 14): sección NUEVA del laboratorio.
+           Es una "hoja de ayuda" para tener abierta mientras usamos la
+           terminal: los comandos de hoy, el camino de un cambio y cómo
+           escribir buenos mensajes de commit.
+           Reutiliza las clases de siempre (.clase-nueva, .lab-grid,
+           .tarjeta-js, .mini-codigo, .flujo, .tabla-selectores,
+           .ejercicio, .tarea-clase) y suma pocas nuevas al final de
+           styles.css (sección CLASE 14): .zonas-git, .zona, .terminal,
+           .commit-bien y .commit-mal.
+           =================================================== -->
+      <section id="clase14" class="clase-nueva">
+        <span class="etiqueta-clase">Clase 14</span>
+        <h2>Git y GitHub: la historia de nuestros proyectos</h2>
+        <p>Hasta hoy, la única forma de respaldar el proyecto era <strong>guardar</strong> el archivo.
+           Con <strong>Git</strong> guardamos el historial completo de cambios en nuestra computadora,
+           y con <strong>GitHub</strong> subimos una copia a internet.</p>
+ 
+        <div class="aviso-hoy">
+          <strong>Hoy trabajamos en la terminal:</strong> en VS Code, abre
+          <em>Terminal → Nueva terminal</em> (o <code>Ctrl + ñ</code>). Asegúrate de que la terminal esté
+          en la carpeta del proyecto, donde están <code>index.html</code> y la carpeta <code>lista</code>.
+        </div>
+ 
+        <!-- Cuatro conceptos clave, en el mismo .lab-grid de siempre. -->
+        <div class="lab-grid">
+          <article class="tarjeta-js">
+            <h3>Repositorio</h3>
+            <p>Una carpeta que Git está <strong>siguiendo</strong>. Se crea una sola vez con <code>git init</code>.</p>
+          </article>
+          <article class="tarjeta-js">
+            <h3>Staging area</h3>
+            <p>La <strong>zona de espera</strong>: los cambios que irán en la próxima fotografía. Se llena con <code>git add</code>.</p>
+          </article>
+          <article class="tarjeta-js">
+            <h3>Commit</h3>
+            <p>Una <strong>fotografía</strong> del proyecto con un mensaje que explica qué cambió. Se toma con <code>git commit</code>.</p>
+          </article>
+          <article class="tarjeta-js">
+            <h3>Push</h3>
+            <p>Sube los commits a <strong>GitHub</strong>, la copia en internet. Se hace con <code>git push</code>.</p>
+          </article>
+        </div>
+ 
+        <!-- Las tres zonas de Git, dibujadas como tres cajas (Grid). -->
+        <h3>Las tres zonas de Git</h3>
+        <div class="zonas-git">
+          <div class="zona">
+            <span class="zona-num">1</span>
+            <strong>Working directory</strong>
+            <p>Mis archivos tal como están ahora en la carpeta.</p>
+          </div>
+          <div class="zona">
+            <span class="zona-num">2</span>
+            <strong>Staging area</strong>
+            <p>Lo que elegí para la próxima fotografía.</p>
+          </div>
+          <div class="zona">
+            <span class="zona-num">3</span>
+            <strong>Repositorio</strong>
+            <p>El historial de fotografías (commits).</p>
+          </div>
+        </div>
+ 
+        <!-- El camino de un cambio: reutiliza .flujo de la Clase 12. -->
+        <h3>El camino de un cambio</h3>
+        <ol class="flujo">
+          <li>1. Modifico un archivo</li>
+          <li>2. git add</li>
+          <li>3. git commit -m "…"</li>
+          <li>4. git push</li>
+          <li>5. ¡Aparece en GitHub!</li>
+        </ol>
+ 
+        <!-- La terminal de hoy, con los comandos en orden. -->
+        <h3>Los comandos de hoy, en orden</h3>
+<pre class="terminal"><span class="prompt">$</span> git --version
+<span class="prompt">$</span> git config --global user.name "Tu Nombre"
+<span class="prompt">$</span> git config --global user.email "tucorreo@ejemplo.com"
+<span class="prompt">$</span> git init
+<span class="prompt">$</span> git status
+<span class="prompt">$</span> git add .
+<span class="prompt">$</span> git commit -m "Primer commit: landing page y lista de tareas"
+<span class="prompt">$</span> git log --oneline
+<span class="prompt">$</span> git remote add origin https://github.com/TU-USUARIO/TU-REPOSITORIO.git
+<span class="prompt">$</span> git branch -M main
+<span class="prompt">$</span> git push -u origin main</pre>
+ 
+        <!-- Tabla de comandos (misma clase de la Clase 11 para que la
+             2.ª columna no se vea como pastilla). -->
+        <table class="tabla-selectores">
+          <thead>
+            <tr><th>Comando</th><th>¿Qué hace?</th><th>¿Cuántas veces?</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>git config</code></td><td>Le dice a Git quién soy (nombre y correo).</td><td>Una vez por computadora</td></tr>
+            <tr><td><code>git init</code></td><td>Convierte la carpeta en un repositorio.</td><td>Una vez por proyecto</td></tr>
+            <tr><td><code>git status</code></td><td>Muestra qué archivos cambiaron.</td><td>¡Siempre que tengas duda!</td></tr>
+            <tr><td><code>git add .</code></td><td>Pasa todos los cambios al staging area.</td><td>Antes de cada commit</td></tr>
+            <tr><td><code>git commit -m</code></td><td>Toma la fotografía con un mensaje.</td><td>Por cada avance terminado</td></tr>
+            <tr><td><code>git log</code></td><td>Muestra el historial de commits.</td><td>Cuando quieras ver la historia</td></tr>
+            <tr><td><code>git remote add</code></td><td>Conecta la carpeta con el repositorio de GitHub.</td><td>Una vez por proyecto</td></tr>
+            <tr><td><code>git push</code></td><td>Sube los commits a GitHub.</td><td>Cuando quieras respaldar</td></tr>
+          </tbody>
+        </table>
+ 
+        <!-- Mensajes de commit: bien vs. mal (borde verde o rojo). -->
+        <h3>Mensajes de commit: ¿bien o mal?</h3>
+        <div class="lab-grid">
+          <article class="tarjeta-js commit-bien">
+            <h3>✔️ Así sí</h3>
+            <p class="salida">Agrega validación al formulario de contacto</p>
+            <p class="salida">Agrega modo oscuro a la landing page</p>
+            <p class="salida">Corrige el enlace a la lista de tareas</p>
+          </article>
+          <article class="tarjeta-js commit-mal">
+            <h3>✖️ Así no</h3>
+            <p class="salida">cambios</p>
+            <p class="salida">asdf</p>
+            <p class="salida">arreglos varios</p>
+          </article>
+        </div>
+ 
+        <h3>Práctica de hoy (en la terminal de VS Code)</h3>
+        <div class="lab-grid">
+          <article class="tarjeta-js ejercicio">
+            <span class="num">1</span>
+            <h3>¿Tengo Git?</h3>
+            <p>Escribe <code>git --version</code>. Si responde con un número, está instalado.</p>
+            <p class="salida">git version 2.x.x</p>
+          </article>
+          <article class="tarjeta-js ejercicio">
+            <span class="num">2</span>
+            <h3>Preséntate con Git</h3>
+            <p>Configura tu nombre y tu correo con <code>git config --global</code>.</p>
+            <p class="salida">(no responde nada: ¡eso es bueno!)</p>
+          </article>
+          <article class="tarjeta-js ejercicio">
+            <span class="num">3</span>
+            <h3>Crea el repositorio</h3>
+            <p>En la carpeta del proyecto: <code>git init</code> y después <code>git status</code>.</p>
+            <p class="salida">Initialized empty Git repository</p>
+          </article>
+          <article class="tarjeta-js ejercicio">
+            <span class="num">4</span>
+            <h3>Primer commit</h3>
+            <p><code>git add .</code> y <code>git commit -m "…"</code> con un buen mensaje.</p>
+            <p class="salida">1 commit · 10 files changed</p>
+          </article>
+          <article class="tarjeta-js ejercicio">
+            <span class="num">5</span>
+            <h3>Repositorio en GitHub</h3>
+            <p>Crea uno nuevo <strong>sin</strong> README ni .gitignore, y copia su URL terminada en <code>.git</code>.</p>
+            <p class="salida">https://github.com/…/….git</p>
+          </article>
+          <article class="tarjeta-js ejercicio">
+            <span class="num">6</span>
+            <h3>Conecta y sube</h3>
+            <p><code>git remote add origin</code>, <code>git branch -M main</code> y <code>git push -u origin main</code>.</p>
+            <p class="salida">¡Tus archivos en GitHub!</p>
+          </article>
+          <article class="tarjeta-js ejercicio">
+            <span class="num">7</span>
+            <h3>Pon tu enlace</h3>
+            <p>Cambia <code>TU-USUARIO/TU-REPOSITORIO</code> en el footer de <code>index.html</code> y en <code>lista.html</code>.</p>
+            <p class="salida">El botón lleva a tu repositorio</p>
+          </article>
+          <article class="tarjeta-js ejercicio reto">
+            <span class="num">★</span>
+            <h3>Reto: tu segundo commit</h3>
+            <p>Sube el cambio del paso 7 con <code>add</code>, <code>commit</code> y <code>push</code>. Revisa el historial en GitHub.</p>
+            <p class="salida">2 commits</p>
+          </article>
+        </div>
+ 
+        <!-- Tarea para la Clase 15, con el recuadro dorado de siempre. -->
+        <div class="tarea-clase">
+          <h3>Para la Clase 15: practicar el flujo completo</h3>
+          <ol>
+            <li>Confirma que tu repositorio de GitHub muestra los dos proyectos (<code>index.html</code> y la carpeta <code>lista</code>) con al menos un commit.</li>
+            <li>Haz un cambio pequeño en cualquiera de los dos proyectos (por ejemplo, corrige un texto o agrega un interés) y <strong>no lo subas todavía</strong>.</li>
+            <li>En la Clase 15 lo subiremos juntos con <code>git add</code>, <code>git commit</code> y <code>git push</code>, y veremos el archivo <code>.gitignore</code>.</li>
+          </ol>
+        </div>
+      </section>
  
     <footer>
       <p>Contáctame en <a href="mailto:astridcuxulic@gmail.com">astridcuxulic@gmail.com</a></p>
@@ -547,3 +733,4 @@ correo.value.includes("@"); // true</pre>
     <script src="logica.js"></script>
   </body>
 </html>
+

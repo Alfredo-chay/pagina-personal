@@ -840,3 +840,168 @@ textarea.campo-error {
   border: 2px solid #3fb8af;
   transform: scale(1.02);
 }
+
+/* ===================================================
+   CLASE 14: GIT Y GITHUB
+   Hoy casi todo pasa en la terminal, no en la página. Aquí
+   solo hay estilos para:
+   - el botón "Ver el código en GitHub" del footer (index.html);
+   - la sección nueva del laboratorio (practica-js.html,
+     id="clase14").
+   =================================================== */
+ 
+/* CAMBIO DE HOY (Clase 14): botón del footer que lleva al repositorio.
+   Es un <a> con forma de botón: inline-flex (Clase 6) para alinear el
+   ícono y el texto, padding y bordes redondeados (Clase 5), y una
+   transición al pasar el cursor (Clase 8). */
+.enlace-github {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #17263a;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 0.6rem 1.2rem;
+  border-radius: 999px;
+  border: 2px solid #3fb8af;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+ 
+.enlace-github:hover {
+  background-color: #3fb8af;
+  color: #17263a;
+  transform: translateY(-2px);
+}
+ 
+/* El símbolo ⎇ es el ícono clásico de las "ramas" de Git. */
+.icono-git {
+  font-size: 1.2rem;
+  color: #e8b054;
+}
+ 
+.enlace-github:hover .icono-git {
+  color: #17263a;
+}
+ 
+/* En modo oscuro (Clase 12), el footer cambia el color de TODOS sus
+   enlaces a turquesa; aquí mantenemos el botón con letras blancas. */
+body.modo-oscuro footer a.enlace-github {
+  color: white;
+}
+ 
+body.modo-oscuro footer a.enlace-github:hover {
+  color: #17263a;
+}
+ 
+/* ---------- Laboratorio (practica-js.html, id="clase14") ---------- */
+ 
+/* CAMBIO DE HOY (Clase 14): las tres zonas de Git, como tres cajas en
+   Grid (Clase 7). En el celular van una debajo de otra; desde 768px, en
+   una fila de tres columnas iguales. */
+.zonas-git {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin: 0.8rem 0 1.5rem;
+}
+ 
+@media (min-width: 768px) {
+  .zonas-git {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+ 
+.zona {
+  position: relative;          /* para el número en la esquina (Clase 6) */
+  background-color: #f3f8fa;
+  border: 2px dashed #b7c3cd;
+  border-radius: 8px;
+  padding: 1rem 1.1rem 0.6rem;
+}
+ 
+/* La última zona (el repositorio) va con borde sólido: es lo que ya
+   quedó guardado de verdad. */
+.zona:last-child {
+  border: 2px solid #3fb8af;
+  background-color: #e7f5f3;
+}
+ 
+.zona strong {
+  color: #065a82;
+}
+ 
+.zona p {
+  margin: 0.4rem 0 0;
+}
+ 
+.zona-num {
+  position: absolute;
+  top: -0.8rem;
+  right: 0.8rem;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 50%;
+  background-color: #065a82;
+  color: white;
+  font-weight: bold;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+ 
+/* CAMBIO DE HOY (Clase 14): un bloque que imita la terminal. Es un <pre>
+   (respeta los espacios y los saltos de línea, Clase 10) con fondo casi
+   negro. overflow-x: auto agrega una barra si un comando no cabe en el
+   celular, en vez de desbordar la página. */
+.terminal {
+  font-family: "Courier New", monospace;
+  background-color: #0f1b2b;
+  color: #e3eef2;
+  padding: 1rem 1.2rem;
+  border-radius: 8px;
+  line-height: 1.7;
+  font-size: 0.9rem;
+  overflow-x: auto;
+  border-top: 28px solid #24384f;   /* la "barra de título" de la ventana */
+}
+ 
+/* CAMBIO DE HOY (Clase 14): el mismo detalle de Grid de la Clase 10, ahora
+   en el <main>. El body es un Grid (Clase 7) y, por defecto, un elemento
+   del grid NO se encoge más que su contenido más ancho. El comando más
+   largo de la terminal empujaba al main y, en el celular, toda la página
+   quedaba más ancha que la pantalla. min-width: 0 le permite encogerse, y
+   así el overflow-x: auto de .terminal hace su trabajo. */
+main {
+  min-width: 0;
+}
+ 
+.terminal .prompt {
+  color: #3fb8af;
+  font-weight: bold;
+  user-select: none;   /* al copiar un comando, el $ no se copia */
+}
+ 
+/* CAMBIO DE HOY (Clase 14): tarjetas de mensajes de commit buenos y
+   malos. Reutilizan .tarjeta-js y solo cambian el color del borde. */
+.commit-bien {
+  border-top-color: #3fb8af;
+}
+ 
+.commit-bien h3 {
+  color: #1c6b5f;
+}
+ 
+.commit-mal {
+  border-top-color: #c0392b;
+}
+ 
+.commit-mal h3 {
+  color: #c0392b;
+}
+ 
+.commit-bien .salida,
+.commit-mal .salida {
+  margin: 0.4rem 0;
+}
