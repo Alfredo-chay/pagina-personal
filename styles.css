@@ -1,0 +1,842 @@
+/* ===================================================
+   CLASE 4: PRIMEROS ESTILOS
+   =================================================== */
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f6f8;
+  max-width: 900px;
+  margin: 0 auto;
+  display: grid;                 
+  grid-template-areas:            
+    "header"
+    "main"
+    "footer";
+}
+
+h1 {
+  color: #065a82;
+  font-size: 40px;
+}
+
+.destacado {
+  color: #c0392b;
+  font-weight: bold;
+}
+
+
+/* ===================================================
+   EXTRA: HEADER CON COLOR DE FONDO
+   =================================================== */
+
+header {
+  background-color: #065a82;
+  text-align: center;
+  padding: 1.5rem 1rem;
+  grid-area: header;    
+}
+
+header h1,
+header nav a {
+  color: white;
+}
+
+header nav {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+header nav a {
+  text-decoration: none;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;     
+  transition: background-color 0.3s ease; 
+}
+
+header nav a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+
+/* ===================================================
+   EXTRA: TABLA
+   =================================================== */
+
+th {
+  background-color: #1c7293;
+  color: white;
+}
+
+td, th {
+  border: 1px solid #cccccc;
+  padding: 6px 10px;
+}
+
+table {
+  border-collapse: collapse;
+  margin: 1rem 0;
+  width: 100%;   
+}
+
+tbody td:nth-child(2) {
+  display: inline-block;
+  background-color: #eaf1f8;
+  color: #1c6b5f;
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+tbody tr:first-child td:nth-child(2) {
+  position: relative;
+  top: -2px;
+}
+
+
+/* ===================================================
+   EXTRA: FORMULARIO
+   =================================================== */
+
+input, textarea, select {
+  border: 1px solid #999999;
+  padding: 6px;
+  max-width: 100%;
+  border-radius: 4px;                       
+  transition: border-color 0.3s ease;
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: #1c7293;
+  outline: none;
+}
+
+button {
+  background-color: #3fb8af;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+   border-radius: 4px;                               
+  cursor: pointer;                                  
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background-color: #2f8f88;
+  transform: scale(1.05);
+}
+ 
+button:focus {
+  background-color: #2f8f88;
+  outline: 3px solid #1c7293;
+  outline-offset: 2px;
+}
+
+form {
+  margin-top: 1rem;
+}
+
+form p:last-of-type {
+  display: flex;
+  gap: 0.75rem;
+}
+
+
+/* ===================================================
+   CLASE 5: BOX MODEL
+   =================================================== */
+
+main {
+  background-color: white;
+  padding: 2rem;
+  margin: 1.5rem 0;
+  border: 1px solid #dddddd;
+  grid-area: main;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);        
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+main:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+}
+
+img {
+  border: 4px solid #3fb8af;
+  border-radius: 8px;
+  margin: 1rem 0;
+  max-width: 100%;
+}
+
+
+/* ===================================================
+   CLASE 6: DISPLAY, POSITION Y FLEXBOX
+   =================================================== */
+
+ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+ul li {
+  background-color: #eaf1f8;
+  color: #065a82;
+  font-weight: bold;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid #cfd8e3;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+ul li:hover {
+  transform: scale(1.08);
+  background-color: #d6e6f5;
+}
+
+
+/* ===================================================
+   CLASE 7: CSS GRID Y DISEÑO RESPONSIVE
+   =================================================== */
+
+footer {
+  grid-area: footer;
+  text-align: center;
+  padding: 1.5rem 1rem;
+  color: #5b6b76;
+}
+
+.sobre-mi-grid {
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .sobre-mi-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    column-gap: 1.5rem;
+    grid-template-areas:
+      "texto       foto"
+      "intereses-h foto"
+      "intereses-l foto"
+      "avances-h   foto"
+      "avances-t   foto";
+  }
+
+  .sobre-mi-grid > p             { grid-area: texto; }
+  .sobre-mi-grid > h2#intereses  { grid-area: intereses-h; }
+  .sobre-mi-grid > ul            { grid-area: intereses-l; }
+  .sobre-mi-grid > h2#avances    { grid-area: avances-h; }
+  .sobre-mi-grid > table         { grid-area: avances-t; }
+
+  .sobre-mi-grid > img {
+    grid-area: foto;    
+    align-self: start;   
+    margin: 0;             
+  }
+}
+
+/* ===================================================
+   CLASE 8: PROYECTO 1 — TRANSICIONES Y ANIMACIONES
+   =================================================== */
+ 
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+ 
+header {
+  animation: aparecer 0.6s ease-out;
+}
+
+/* ===================================================
+   CLASE 9: INTRODUCCIÓN A JAVASCRIPT
+   Hoy JavaScript vive en logica.js y muestra todo en la
+   consola. Estas reglas solo dan estilo a la página nueva
+   practica-js.html, que comparte esta misma hoja de estilos
+   con index.html. Ninguna regla de esta sección cambia cómo
+   se ve la landing page, salvo el ajuste del nav (abajo).
+   =================================================== */
+ 
+/* CAMBIO DE HOY (Clase 9): el nav ahora tiene 5 enlaces (agregamos
+   "Laboratorio JS"). flex-wrap: wrap deja que los enlaces bajen a
+   una segunda línea en pantallas angostas, en vez de apretarse. Es
+   la misma propiedad que ya usamos en los chips de intereses. */
+header nav {
+  flex-wrap: wrap;
+}
+ 
+/* CAMBIO DE HOY (Clase 9): <code> marca nombres de código dentro del
+   texto (let, const, logica.js...). Fuente monoespaciada, como en el
+   editor, y un fondo suave con los colores de la página. */
+code {
+  font-family: "Courier New", monospace;
+  background-color: #eaf1f8;
+  color: #065a82;
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+ 
+/* CAMBIO DE HOY (Clase 9): recuadro de bienvenida del laboratorio.
+   border-left grueso + fondo claro = el mismo estilo de "nota
+   destacada" que usamos en las presentaciones. */
+.lab-intro {
+  background-color: #f3f8fa;
+  border-left: 6px solid #3fb8af;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+ 
+.lab-intro h2 {
+  margin-top: 0.5rem;
+  color: #065a82;
+}
+ 
+/* CAMBIO DE HOY (Clase 9): la caja "Cómo ver los resultados" imita una
+   consola: fondo oscuro y texto claro (el mismo azul oscuro de los
+   bloques de código de las presentaciones). */
+.consola-tip {
+  background-color: #17263a;
+  color: #e3eef2;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+ 
+.consola-tip h2 {
+  color: #3fb8af;
+  margin-top: 0.5rem;
+}
+ 
+.consola-tip ol {
+  line-height: 1.8;
+}
+ 
+.consola-tip code {
+  background-color: #24384f;
+  color: #e8b054;
+}
+ 
+/* CAMBIO DE HOY (Clase 9): tarjetas en Grid (Clase 7). Mobile-first:
+   una columna por defecto; dos columnas desde 768px. */
+.lab-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin: 1rem 0 1.5rem;
+}
+ 
+@media (min-width: 768px) {
+  .lab-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+ 
+/* CAMBIO DE HOY (Clase 9): cada tarjeta reutiliza la idea de
+   "elevación" de la Clase 8: transition + translateY en :hover. */
+.tarjeta-js {
+  background-color: #f3f8fa;
+  border: 1px solid #dde7ee;
+  border-top: 4px solid #1c7293;
+  border-radius: 8px;
+  padding: 1rem 1.2rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+ 
+.tarjeta-js:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+}
+ 
+.tarjeta-js h3 {
+  margin: 0.2rem 0 0.5rem;
+  color: #065a82;
+}
+ 
+/* CAMBIO DE HOY (Clase 9): en los ejercicios, el número va en un
+   círculo. position: relative en la tarjeta + position: absolute en
+   .num (Clase 6) colocan el círculo en la esquina superior derecha. */
+.ejercicio {
+  position: relative;
+  border-top-color: #3fb8af;
+}
+ 
+.ejercicio .num {
+  position: absolute;
+  top: 0.8rem;
+  right: 0.8rem;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background-color: #065a82;
+  color: white;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+ 
+/* CAMBIO DE HOY (Clase 9): "resultado esperado" con aspecto de línea
+   de consola. El ::before agrega el símbolo › antes del texto sin
+   tener que escribirlo en el HTML. */
+.salida {
+  font-family: "Courier New", monospace;
+  background-color: #17263a;
+  color: #e8b054;
+  padding: 0.5rem 0.8rem;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+ 
+.salida::before {
+  content: "› ";
+  color: #3fb8af;
+}
+
+/* ===================================================
+   CLASE 10: LOOPS Y FUNCIONES
+   Estas reglas solo dan estilo a la sección nueva del
+   laboratorio (practica-js.html, id="clase10"). La landing
+   page (index.html) no cambia hoy.
+   =================================================== */
+ 
+/* CAMBIO DE HOY (Clase 10): separa visualmente la sección de hoy de la
+   de la Clase 9: una línea punteada arriba y espacio extra (box model,
+   Clase 5). */
+.clase-nueva {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 3px dashed #cfd8e3;
+}
+ 
+/* CAMBIO DE HOY (Clase 10): "pastilla" con el número de clase. Es
+   inline-block (Clase 6): se queda en su línea como un texto, pero
+   acepta padding como una caja. */
+.etiqueta-clase {
+  display: inline-block;
+  background-color: #3fb8af;
+  color: white;
+  font-weight: bold;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 999px;
+}
+ 
+/* CAMBIO DE HOY (Clase 10): bloques de código dentro de las tarjetas.
+   <pre> respeta espacios y saltos de línea; overflow-x: auto agrega
+   una barra para desplazarse si una línea no cabe en el celular, en
+   vez de desbordar la tarjeta (responsive, Clase 7). */
+.mini-codigo {
+  font-family: "Courier New", monospace;
+  background-color: #17263a;
+  color: #e3eef2;
+  padding: 0.7rem 0.9rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  overflow-x: auto;
+  margin: 0.6rem 0 0;
+}
+ 
+/* CAMBIO DE HOY (Clase 10): un detalle de Grid (Clase 7). Por defecto,
+   un elemento dentro de un grid NO se encoge más que su contenido más
+   ancho; como .mini-codigo tiene líneas largas que no se cortan, en el
+   celular empujaba la tarjeta y toda la página quedaba más ancha que la
+   pantalla. min-width: 0 le permite encogerse, y entonces el
+   overflow-x: auto de .mini-codigo hace su trabajo. */
+.lab-grid > .tarjeta-js {
+  min-width: 0;
+}
+ 
+/* CAMBIO DE HOY (Clase 10): las vueltas del for, dibujadas como una fila
+   de fichas con Flexbox (Clase 6). flex-wrap hace que bajen de línea en
+   pantallas angostas. */
+.vueltas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0.8rem 0 1.5rem;
+}
+ 
+.vueltas span {
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+  background-color: #065a82;
+  color: white;
+  padding: 0.45rem 0.8rem;
+  border-radius: 6px;
+}
+ 
+/* La última ficha (la condición ya es false) va en gris y con borde
+   punteado: es la vuelta que NO se ejecuta. */
+.vueltas span.fin {
+  background-color: #eef1f4;
+  color: #5b6b76;
+  border: 2px dashed #b7c3cd;
+}
+ 
+/* CAMBIO DE HOY (Clase 10): el reto opcional usa la misma tarjeta de
+   .ejercicio, pero en dorado para que se note que es un extra. */
+.ejercicio.reto {
+  border-top-color: #e8b054;
+}
+ 
+.ejercicio.reto .num {
+  background-color: #e8b054;
+  color: #17263a;
+}
+ 
+/* CAMBIO DE HOY (Clase 10): recuadro de la tarea para la próxima clase,
+   con el mismo estilo de "nota destacada" que .lab-intro, pero dorado. */
+.tarea-clase {
+  background-color: #fff8e8;
+  border-left: 6px solid #e8b054;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  margin-top: 1.5rem;
+}
+ 
+.tarea-clase h3 {
+  margin-top: 0.3rem;
+  color: #8a5a00;
+}
+ 
+.tarea-clase ol {
+  line-height: 1.7;
+}
+
+
+/* ===================================================
+   CLASE 11: ARRAYS, OBJETOS E INTRODUCCIÓN AL DOM
+   Hoy la landing page (index.html) se conecta a su propio
+   archivo de JavaScript, script.js. Aquí solo hay estilos:
+   el distintivo del footer y la sección nueva del
+   laboratorio (practica-js.html, id="clase11").
+   =================================================== */
+ 
+/* CAMBIO DE HOY (Clase 11): distintivo en el footer de index.html que
+   recuerda que la página ya tiene JavaScript. inline-block (Clase 6)
+   para que el fondo solo ocupe lo que mide el texto. */
+.badge-js {
+  display: inline-block;
+  background-color: #17263a;
+  color: #e8b054;
+  font-family: "Courier New", monospace;
+  font-size: 0.85rem;
+  font-weight: bold;
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  margin-top: 0.3rem;
+}
+ 
+/* CAMBIO DE HOY (Clase 11): recuadro de aviso en el laboratorio. Mismo
+   estilo de "nota destacada" de .lab-intro, pero en azul. */
+.aviso-hoy {
+  background-color: #eaf1f8;
+  border-left: 6px solid #065a82;
+  padding: 0.9rem 1.2rem;
+  border-radius: 8px;
+  margin: 1rem 0 1.5rem;
+  line-height: 1.6;
+}
+ 
+/* CAMBIO DE HOY (Clase 11): el árbol del DOM, dibujado con cajas
+   anidadas. Cada .nodo tiene un borde a la izquierda y un margen
+   (box model, Clase 5): cuanto más adentro está, más a la derecha se
+   ve, igual que la sangría del HTML. */
+.arbol {
+  background-color: #f3f8fa;
+  border: 1px solid #dde7ee;
+  border-radius: 8px;
+  padding: 1rem 1.2rem;
+  margin: 0.8rem 0 1.5rem;
+  overflow-x: auto;   /* en el celular, si no cabe, se desplaza dentro de su caja */
+}
+ 
+.nodo {
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+  color: #065a82;
+  border-left: 3px solid #3fb8af;
+  margin: 0.35rem 0 0.35rem 1.1rem;
+  padding: 0.15rem 0 0.15rem 0.7rem;
+}
+ 
+/* La raíz (document) no lleva sangría ni borde. */
+.nodo.raiz {
+  margin-left: 0;
+  border-left: none;
+  padding-left: 0;
+  color: #17263a;
+}
+ 
+/* Las hojas (nodos sin hijos dibujados) en un tono más suave. */
+.nodo.hoja {
+  font-weight: normal;
+  color: #1a2433;
+  border-left-color: #cfd8e3;
+}
+ 
+/* Los elementos que vamos a seleccionar hoy (h1 y nav). */
+.nodo.marcado {
+  background-color: #fff8e8;
+  border-left-color: #e8b054;
+  font-weight: bold;
+}
+ 
+/* El <script> nuevo de hoy. */
+.nodo.nuevo {
+  background-color: #e7f5f3;
+  border-left-color: #3fb8af;
+  color: #1c6b5f;
+  font-weight: bold;
+}
+ 
+/* CAMBIO DE HOY (Clase 11): desde la Clase 5, la 2.ª columna de TODAS
+   las tablas se ve como "pastilla" (tbody td:nth-child(2)). En esta
+   tabla no la queremos, así que la regresamos a una celda normal. Como
+   ".tabla-selectores tbody td:nth-child(2)" es más específico (tiene
+   una clase), le gana a la regla general. */
+.tabla-selectores tbody td:nth-child(2) {
+  display: table-cell;
+  background-color: transparent;
+  color: inherit;
+  padding: 6px 10px;
+  border-radius: 0;
+  position: static;
+}
+ 
+/* CAMBIO DE HOY (Clase 11): las celdas de esta tabla tienen código largo
+   y sin espacios, como querySelector(".destacado"). Una tabla no se
+   encoge más que su palabra más larga, y en el celular empujaba toda la
+   página. overflow-wrap: anywhere permite cortar esas palabras largas
+   en cualquier punto para que la tabla quepa en la pantalla. */
+.tabla-selectores td {
+  overflow-wrap: anywhere;
+}
+
+/* ===================================================
+   CLASE 12: MODIFICAR EL DOM, EVENTOS Y FORMULARIOS
+   Estas clases NO se usan solas: JavaScript (script.js) se
+   las pone o se las quita a los elementos con classList.
+   Así el "cómo se ve" sigue viviendo en el CSS y JavaScript
+   solo decide "cuándo" (buena práctica de hoy).
+   =================================================== */
+ 
+/* CAMBIO DE HOY (Clase 12): el botón de modo oscuro del header. Hereda
+   la regla general "button" de la Clase 6, pero aquí lo hacemos
+   transparente con borde para que combine con el azul del header. */
+.btn-tema {
+  margin-top: 0.9rem;
+  background-color: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  font-weight: bold;
+  border-radius: 999px;
+}
+ 
+.btn-tema:hover,
+.btn-tema:focus {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+ 
+/* CAMBIO DE HOY (Clase 12): transición suave del fondo y del color para
+   que el cambio a modo oscuro no sea un "golpe" (Clase 8). */
+body,
+main {
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+ 
+/* CAMBIO DE HOY (Clase 12): MODO OSCURO. Todas estas reglas empiezan con
+   body.modo-oscuro, o sea: solo se aplican cuando el <body> tiene la
+   clase "modo-oscuro". Esa clase la pone y la quita JavaScript con
+   document.body.classList.toggle("modo-oscuro"). */
+body.modo-oscuro {
+  background-color: #0f1b2b;
+  color: #e3eef2;
+}
+ 
+body.modo-oscuro main {
+  background-color: #17263a;
+  border-color: #24384f;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+}
+ 
+body.modo-oscuro h2 {
+  color: #3fb8af;
+}
+ 
+body.modo-oscuro .destacado {
+  color: #ff8a7a;   /* el rojo de la Clase 4, más claro para que se lea en fondo oscuro */
+}
+ 
+body.modo-oscuro td,
+body.modo-oscuro th {
+  border-color: #24384f;
+}
+ 
+body.modo-oscuro footer {
+  color: #9fb3c2;
+}
+ 
+body.modo-oscuro footer a {
+  color: #3fb8af;
+}
+ 
+/* CAMBIO DE HOY (Clase 12): el párrafo de saludo que llena JavaScript
+   con innerHTML. ":empty" significa "cuando no tiene nada adentro":
+   mientras JavaScript no escriba en él, no se ve ni ocupa espacio. */
+.saludo {
+  background-color: #e7f5f3;
+  color: #1c6b5f;
+  border-left: 6px solid #3fb8af;
+  padding: 0.8rem 1.1rem;
+  border-radius: 8px;
+  animation: aparecer 0.6s ease;   /* reutilizamos la animación de la Clase 8 */
+}
+ 
+.saludo:empty {
+  display: none;
+}
+ 
+/* CAMBIO DE HOY (Clase 12): los intereses ahora se pueden tocar. El
+   cursor de "manita" avisa que son clicables. */
+ul li {
+  cursor: pointer;
+  user-select: none;   /* evita que el texto se seleccione al hacer doble clic */
+}
+ 
+/* CAMBIO DE HOY (Clase 12): un interés marcado como favorito. JavaScript
+   alterna esta clase con classList.toggle("favorito") en cada clic. */
+ul li.favorito {
+  background-color: #e8b054;
+  color: #17263a;
+  border-color: #c99437;
+}
+ 
+/* ::before agrega una estrella ANTES del texto, solo con CSS. */
+ul li.favorito::before {
+  content: "★ ";
+}
+ 
+/* CAMBIO DE HOY (Clase 12): contador de favoritos dentro del h2. */
+.contador {
+  font-size: 0.9rem;
+  font-weight: normal;
+  color: #8a5a00;
+  background-color: #fff8e8;
+  padding: 2px 10px;
+  border-radius: 999px;
+  vertical-align: middle;
+}
+ 
+.contador:empty {
+  display: none;
+}
+ 
+/* CAMBIO DE HOY (Clase 12): el contador de caracteres del mensaje. */
+.contador-mensaje {
+  color: #5b6b76;
+}
+ 
+/* CAMBIO DE HOY (Clase 12): la caja de mensajes del formulario. Vacía no
+   se ve; con la clase .error se pinta de rojo y con .exito de verde. */
+.mensaje-form {
+  padding: 0.8rem 1.1rem;
+  border-radius: 8px;
+  font-weight: bold;
+  border-left: 6px solid transparent;
+}
+ 
+.mensaje-form:empty {
+  display: none;
+}
+ 
+.mensaje-form.error {
+  background-color: #fdecea;
+  color: #c0392b;
+  border-left-color: #c0392b;
+}
+ 
+.mensaje-form.exito {
+  background-color: #e7f5f3;
+  color: #1c6b5f;
+  border-left-color: #3fb8af;
+  animation: aparecer 0.6s ease;
+}
+ 
+/* CAMBIO DE HOY (Clase 12): el campo que tiene el error se marca en rojo.
+   Escribimos "input.campo-error" (etiqueta + clase) para que sea tan
+   específico como "input:focus" de la Clase 8; como esta regla está
+   DESPUÉS en el archivo, gana y el borde se queda rojo aunque el campo
+   tenga el foco. */
+input.campo-error,
+textarea.campo-error {
+  border-color: #c0392b;
+  background-color: #fff5f4;
+}
+ 
+/* ---------- Laboratorio (practica-js.html, id="clase12") ---------- */
+ 
+/* CAMBIO DE HOY (Clase 12): el "camino" de un evento, dibujado como una
+   fila de pasos con Flexbox (Clase 6). Es un <ol> (lista numerada),
+   así no le tocan las reglas de "ul li" de los intereses. Cada paso lleva una flecha con
+   ::after, menos el último. */
+.flujo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 0.8rem 0 1.5rem;
+  padding: 0;
+  list-style: none;
+}
+ 
+.flujo li {
+  background-color: #065a82;
+  color: white;
+  padding: 0.5rem 0.9rem;
+  border-radius: 8px;
+  font-weight: bold;
+}
+ 
+.flujo li::after {
+  content: "  →";
+  color: #3fb8af;
+}
+ 
+.flujo li:last-child {
+  background-color: #3fb8af;
+  color: #17263a;
+}
+ 
+.flujo li:last-child::after {
+  content: "";
+}
+ 
+/* CAMBIO DE HOY (Clase 12): tarjeta de la demo en vivo del laboratorio.
+   logica.js le alterna la clase "encendida" con un clic. */
+.demo-tarjeta {
+  background-color: #f3f8fa;
+  border: 2px dashed #b7c3cd;
+  border-radius: 8px;
+  padding: 1rem 1.2rem;
+  margin: 0.8rem 0;
+  transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+ 
+.demo-tarjeta.encendida {
+  background-color: #e7f5f3;
+  border: 2px solid #3fb8af;
+  transform: scale(1.02);
+}
