@@ -1,0 +1,6 @@
+#configuración personal de VS Code
+.vscode/
+
+#Archivos invisibles del sistema operativo
+.DS_Store
+Thumbs.db
