@@ -3,35 +3,53 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi lista de tareas · Proyecto 2</title>
-    <link rel="stylesheet" href="lista.css">
+    <!-- CAMBIO DE HOY (Clase 15) · SEO: resumen de la página para buscadores. -->
+    <meta name="description" content="Lista de tareas interactiva de Astrid: agrega, completa y elimina tareas. Proyecto 2 del curso de Programación Web Básica.">
+    <!-- CAMBIO DE HOY (Clase 15) · SEO: title con el nombre de la autora. -->
+    <title>Mi lista de tareas · Astrid | Proyecto 2</title>
+    <!-- CAMBIO DE HOY (Clase 15) · ORGANIZACIÓN: lista.css ahora vive en
+         lista/css/. Como lista.html está DENTRO de la carpeta lista, la ruta
+         empieza desde ahí: css/lista.css (sin ../). -->
+    <link rel="stylesheet" href="css/lista.css">
   </head>
   <body>
+    <!-- ../ sube un nivel: de la carpeta lista a la carpeta del proyecto. -->
+    <!-- CAMBIO DE HOY (Clase 15) · ACCESIBILIDAD: un <nav> con nombre dentro
+         del header, para que el lector de pantalla lo anuncie como menú. -->
     <header class="nav-app">
-      <a href="../index.html">← Mi página personal</a>
-      <a href="../practica-js.html">Laboratorio JS</a>
+      <nav aria-label="Navegación de la lista">
+        <a href="../index.html">← Mi página personal</a>
+        <a href="../practica-js.html">Laboratorio JS</a>
+      </nav>
     </header>
-
+ 
     <main class="app-tareas">
       <h1>📝 Mi lista de tareas</h1>
       <p id="resumen" class="resumen"></p>
-
+ 
       <form id="form-tarea" class="form-tarea" novalidate>
         <input type="text" id="input-tarea" placeholder="Nueva tarea…" aria-label="Nueva tarea" autocomplete="off">
         <button type="submit">Agregar</button>
       </form>
-
-      <p id="mensaje-error" class="mensaje-error"></p>
-
-      <ul id="lista-tareas" class="lista-tareas"></ul>
-
+ 
+      <!-- CAMBIO DE HOY (Clase 15) · ACCESIBILIDAD: aria-live="polite" hace que
+           el lector de pantalla lea el mensaje de error cuando aparece. -->
+      <p id="mensaje-error" class="mensaje-error" aria-live="polite"></p>
+ 
+      <!-- CAMBIO DE HOY (Clase 15) · ACCESIBILIDAD: aria-label le da nombre a la
+           lista, y aria-live hace que se anuncien las tareas nuevas. -->
+      <ul id="lista-tareas" class="lista-tareas" aria-label="Tareas" aria-live="polite"></ul>
+ 
       <div class="acciones">
         <button type="button" id="btn-limpiar" class="btn-limpiar">🧹 Borrar completadas</button>
       </div>
-
-      <p class="pie">Proyecto 2 · Programación Web Básica</p>
+ 
+      <p class="pie">Proyecto 2 · Programación Web Básica · 🌐 publicado en Netlify ·
+        <a href="../index.html">volver a mi página</a></p>
+      
     </main>
-
-    <script src="lista.js"></script>
+ 
+    <!-- CAMBIO DE HOY (Clase 15) · ORGANIZACIÓN: lista.js ahora vive en lista/js/. -->
+    <script src="js/lista.js"></script>
   </body>
 </html>

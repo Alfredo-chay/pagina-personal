@@ -2,13 +2,19 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Laboratorio de JavaScript - Mi Página Personal</title>
-    <link rel="stylesheet" href="styles.css">
+    <!-- CAMBIO DE HOY (Clase 15) · SEO y responsive, igual que en index.html. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Laboratorio de JavaScript de Alfredo: prácticas de variables, condicionales, loops, funciones, DOM, eventos, Git y accesibilidad.">
+    <title>Laboratorio de JavaScript · Alfredo | Mi Página Personal</title>
+    <!-- CAMBIO DE HOY (Clase 15) · ORGANIZACIÓN: la hoja de estilos ahora vive
+         en la carpeta css/. -->
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <header>
         <h1>Laboratorio de JavaScript</h1>
-        <nav>
+        <!-- CAMBIO DE HOY (Clase 15) · ACCESIBILIDAD: el menú con nombre. -->
+        <nav aria-label="Menú del laboratorio">
             <a href="index.html">Mi página</a>
             <a href="#consola">Consola</a>
             <a href="#teoria">Teoría</a>
@@ -16,9 +22,12 @@
             <!-- CAMBIO DE HOY (Clase 12): enlaces directos a las secciones nuevas. -->
             <a href="#clase11">Arrays y DOM</a>
             <a href="#clase12">Eventos</a>
+            <!-- CAMBIO DE HOY (Clase 15): enlaces a las secciones de las Clases 14 y 15. -->
+            <a href="#clase14">Git y GitHub</a>
+            <a href="#clase15">Accesibilidad</a>
         </nav>
     </header>
-
+ 
     <main>
         <section class="lab-intro">
             <h2>Hoy nuestra página empieza a pensar</h2>
@@ -32,7 +41,7 @@
             <em>consola</em> del navegador. En la Clase 11 la landing page recibió su propio archivo,
             <code>script.js</code>, y en la Clase 12 la página empieza a reaccionar a clics.</p>
         </section>
-
+ 
         <section id="consola" class="consola-tip">
         <h2>Cómo ver los resultados</h2>
         <ol>
@@ -65,7 +74,7 @@
             <p>Compara una misma variable contra muchos valores exactos. Cada <code>case</code> termina con <code>break</code>.</p>
           </article>
         </div>
-
+ 
         <h3>Tipos de datos básicos</h3>
         <table>
           <thead>
@@ -84,7 +93,7 @@
           </tbody>
         </table>
       </section>
-
+ 
       <section id="ejercicios">
         <h2>Ejercicios de lógica</h2>
         <p>Resuélvelos en <code>logica.js</code>. Cambia los valores de las variables para probar todos los caminos.</p>
@@ -117,7 +126,7 @@
             <span class="num">5</span>
             <h3>¿Puede tomar el curso?</h3>
             <p>Combina dos condiciones con <code>&amp;&amp;</code>: edad de 16 o más y tener computadora.</p>
-            <p class="salida">Puede tomar el curso ✔</p>
+            <p class="salida">Puede tomar el curso ✔️</p>
           </article>
         </div>
       </section>
@@ -161,8 +170,8 @@ while (intentos &lt; 3) {
           <article class="tarjeta-js">
             <h3>return</h3>
             <p>Entrega el resultado y <strong>termina</strong> la función.</p>
-<pre class="mini-codigo">saludar("Alfredo");
-// → "Hola, Alfredo!"</pre>
+<pre class="mini-codigo">saludar("Astrid");
+// → "Hola, Astrid!"</pre>
           </article>
         </div>
  
@@ -265,10 +274,10 @@ colores.length; // 3</pre>
             <h3>Objetos</h3>
             <p>Datos relacionados en pares <code>propiedad: valor</code> entre <code>{ }</code>.</p>
 <pre class="mini-codigo">const perfil = {
-  nombre: "Alfredo",
+  nombre: "Astrid",
   nivel: "intermedio",
 };
-perfil.nombre; // "Alfredo"</pre>
+perfil.nombre; // "Astrid"</pre>
           </article>
           <article class="tarjeta-js">
             <h3>querySelector</h3>
@@ -339,7 +348,7 @@ enlaces.length; // 5</pre>
             <span class="num">2</span>
             <h3>Mi perfil</h3>
             <p>Un objeto <code>perfil</code> con nombre, curso y nivel, mostrado con notación de punto.</p>
-            <p class="salida">Nombre: Alfredo</p>
+            <p class="salida">Nombre: Astrid</p>
           </article>
           <article class="tarjeta-js ejercicio">
             <span class="num">3</span>
@@ -385,13 +394,13 @@ enlaces.length; // 5</pre>
         <p>En la Clase 11 JavaScript <strong>leyó</strong> nuestra página. Hoy la
            <strong>cambia</strong>, <strong>escucha</strong> lo que hace la persona que la visita
            y <strong>revisa</strong> el formulario antes de enviarlo.</p>
-
+ 
         <div class="aviso-hoy">
           <strong>Hoy los resultados se ven en la página:</strong> abre <code>index.html</code> con
           Live Server, prueba el botón <em>🌙 Modo oscuro</em>, haz clic en tus intereses y envía el
           formulario vacío. El código está al final de <code>script.js</code>.
         </div>
-
+ 
         <!-- Seis tarjetas con la teoría de hoy (mismo .lab-grid de siempre). -->
         <div class="lab-grid">
           <article class="tarjeta-js">
@@ -435,7 +444,7 @@ li.classList.toggle("favorito");</pre>
 correo.value.includes("@"); // true</pre>
           </article>
         </div>
-
+ 
         <!-- El camino de un evento, paso a paso (.flujo: Flexbox). -->
         <h3>¿Qué pasa cuando alguien hace clic?</h3>
         <ol class="flujo">
@@ -445,14 +454,14 @@ correo.value.includes("@"); // true</pre>
           <li>4. Se ejecuta la función</li>
           <li>5. La página cambia</li>
         </ol>
-
+ 
         <!-- Demo en vivo: el código está al final de logica.js. -->
         <h3>Pruébalo aquí mismo</h3>
         <div id="demo-tarjeta" class="demo-tarjeta">
           <p id="demo-texto">Apagada. Presiona el botón para encender esta tarjeta.</p>
           <button type="button" id="demo-boton">Encender / apagar</button>
         </div>
-
+ 
         <!-- Tabla con la clase de la Clase 11 para que la 2.ª columna no
              se vea como "pastilla". -->
         <h3>¿style o classList?</h3>
@@ -467,7 +476,7 @@ correo.value.includes("@"); // true</pre>
             <tr><td>Saber si un elemento ya tiene una clase</td><td>classList.contains</td><td><code>li.classList.contains("favorito")</code></td></tr>
           </tbody>
         </table>
-
+ 
         <h3>Ejercicio guiado de hoy (en <code>index.html</code> y <code>script.js</code>)</h3>
         <div class="lab-grid">
           <article class="tarjeta-js ejercicio">
@@ -492,19 +501,19 @@ correo.value.includes("@"); // true</pre>
             <span class="num">4</span>
             <h3>Nombre obligatorio</h3>
             <p>Si <code>nombreInput.value === ""</code>, muestra un error en rojo.</p>
-            <p class="salida">✖ El nombre es obligatorio.</p>
+            <p class="salida">✖️ El nombre es obligatorio.</p>
           </article>
           <article class="tarjeta-js ejercicio">
             <span class="num">5</span>
             <h3>Correo con @</h3>
             <p>Si el correo no incluye <code>"@"</code> (<code>.includes("@")</code>), muestra otro error.</p>
-            <p class="salida">✖ El correo debe incluir una @</p>
+            <p class="salida">✖️ El correo debe incluir una @</p>
           </article>
           <article class="tarjeta-js ejercicio">
             <span class="num">6</span>
             <h3>Mensaje de éxito</h3>
             <p>Si todo está bien: mensaje verde con <code>classList.add("exito")</code>.</p>
-            <p class="salida">✔ ¡Gracias, Astrid!</p>
+            <p class="salida">✔️ ¡Gracias, Astrid!</p>
           </article>
           <article class="tarjeta-js ejercicio">
             <span class="num">7</span>
@@ -516,7 +525,7 @@ correo.value.includes("@"); // true</pre>
             <span class="num">8</span>
             <h3>Probar todo</h3>
             <p>Envía el formulario vacío, con correo sin @ y con datos válidos. Luego prueba tu clic.</p>
-            <p class="salida">3 pruebas + 1 clic ✔</p>
+            <p class="salida">3 pruebas + 1 clic ✔️</p>
           </article>
           <article class="tarjeta-js ejercicio reto">
             <span class="num">★</span>
@@ -532,9 +541,8 @@ correo.value.includes("@"); // true</pre>
           </article>
         </div>
       </section>
-    </main>
-
-    <!-- ===================================================
+ 
+      <!-- ===================================================
            CAMBIO DE HOY (Clase 14): sección NUEVA del laboratorio.
            Es una "hoja de ayuda" para tener abierta mientras usamos la
            terminal: los comandos de hoy, el camino de un cambio y cómo
@@ -720,8 +728,373 @@ correo.value.includes("@"); // true</pre>
         </div>
       </section>
  
+      <!-- ===================================================
+           CAMBIO DE HOY (Clase 15): sección NUEVA del laboratorio.
+           Hoy el laboratorio es una herramienta para revisar NUESTRA
+           página: la estructura de carpetas, las rutas nuevas y una
+           checklist de accesibilidad y SEO que se marca con clics.
+           El código de la checklist está al final de js/logica.js.
+           Clases nuevas en css/styles.css (sección CLASE 15):
+           .antes-despues, .checklist, .progreso y .progreso-barra.
+           =================================================== -->
+      <section id="clase15" class="clase-nueva">
+        <span class="etiqueta-clase">Clase 15</span>
+        <h2>Organización, accesibilidad y SEO</h2>
+        <p>Hoy no agregamos secciones nuevas a la página: la <strong>ordenamos</strong> como un proyecto
+           profesional y la hacemos usable para <strong>más personas</strong>. Son los últimos detalles que
+           separan un proyecto de práctica de un sitio listo para publicarse.</p>
+ 
+        <div class="aviso-hoy">
+          <strong>Hoy movemos archivos:</strong> después de cada cambio, abre <code>index.html</code> con
+          Live Server y revisa que los estilos, la foto y el JavaScript sigan funcionando. Si algo
+          desaparece, casi siempre es una <strong>ruta</strong> que falta actualizar.
+        </div>
+ 
+        <!-- Antes y después de la reorganización, lado a lado. -->
+        <h3>Antes y después: la estructura de carpetas</h3>
+        <div class="antes-despues">
+          <div>
+            <h4>Antes (todo suelto)</h4>
+<pre class="terminal">mi-proyecto/
+├── imagenes/
+│   └── foto.jpg
+├── lista/
+│   ├── lista.html
+│   ├── lista.css
+│   └── lista.js
+├── index.html
+├── practica-js.html
+├── styles.css
+├── script.js
+└── logica.js</pre>
+          </div>
+          <div>
+            <h4>Después (por tipo de archivo)</h4>
+<pre class="terminal">mi-proyecto/
+├── css/
+│   └── styles.css
+├── img/
+│   └── foto-perfil.jpg
+├── js/
+│   ├── script.js
+│   └── logica.js
+├── lista/
+│   ├── css/lista.css
+│   ├── js/lista.js
+│   └── lista.html
+├── index.html
+└── practica-js.html</pre>
+          </div>
+        </div>
+ 
+        <!-- Las rutas que cambian (tabla de la Clase 11, sin pastillas). -->
+        <h3>Las rutas que hay que actualizar</h3>
+        <table class="tabla-selectores">
+          <thead>
+            <tr><th>Archivo</th><th>Antes</th><th>Después</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>index.html</td><td><code>href="styles.css"</code></td><td><code>href="css/styles.css"</code></td></tr>
+            <tr><td>index.html</td><td><code>src="script.js"</code></td><td><code>src="js/script.js"</code></td></tr>
+            <tr><td>index.html</td><td><code>src="imagenes/foto.jpg"</code></td><td><code>src="img/foto-perfil.jpg"</code></td></tr>
+            <tr><td>practica-js.html</td><td><code>src="logica.js"</code></td><td><code>src="js/logica.js"</code></td></tr>
+            <tr><td>lista.html</td><td><code>href="lista.css"</code></td><td><code>href="css/lista.css"</code></td></tr>
+            <tr><td>lista.html</td><td><code>src="lista.js"</code></td><td><code>src="js/lista.js"</code></td></tr>
+          </tbody>
+        </table>
+ 
+        <!-- Cuatro ideas de accesibilidad, en el .lab-grid de siempre. -->
+        <h3>Accesibilidad: una página para todas las personas</h3>
+        <div class="lab-grid">
+          <article class="tarjeta-js">
+            <h3>alt descriptivo</h3>
+            <p>Describe lo que se ve en la imagen para quien no puede verla.</p>
+<pre class="mini-codigo">✖️ alt="imagen"
+✔️ alt="Astrid sonriendo con un trofeo"</pre>
+          </article>
+          <article class="tarjeta-js">
+            <h3>Teclado y foco</h3>
+            <p>Todo lo que se usa con el mouse debe poder usarse con <code>Tab</code>, <code>Enter</code> y <code>Espacio</code>.</p>
+<pre class="mini-codigo">a:focus-visible {
+  outline: 3px solid #e8b054;
+}</pre>
+          </article>
+          <article class="tarjeta-js">
+            <h3>Contraste</h3>
+            <p>Texto y fondo deben distinguirse bien: mínimo <strong>4.5 : 1</strong> para texto normal.</p>
+<pre class="mini-codigo">✖️ blanco sobre #3fb8af → 2.4 : 1
+✔️ blanco sobre #1f7a73 → 5.1 : 1</pre>
+          </article>
+          <article class="tarjeta-js">
+            <h3>SEO básico</h3>
+            <p>Un <code>title</code> descriptivo y una <code>meta description</code> ayudan a Google a entender la página.</p>
+<pre class="mini-codigo">&lt;meta name="description"
+      content="Página personal de…"&gt;</pre>
+          </article>
+        </div>
+ 
+        <!-- La checklist interactiva: cada casilla es un <input type="checkbox">
+             dentro de su <label>. El texto va en un <span> para que Flexbox
+             lo trate como UNA sola pieza y pueda bajar de línea. logica.js cuenta cuántas están marcadas
+             y mueve la barra de progreso. -->
+        <h3>Auditoría de mi landing page</h3>
+        <p>Revisa tu <code>index.html</code> punto por punto y marca cada casilla cuando lo compruebes.</p>
+        <div class="progreso" aria-hidden="true">
+          <div id="progreso-barra" class="progreso-barra"></div>
+        </div>
+        <p id="progreso-texto" class="progreso-texto" aria-live="polite">0 de 8 revisados</p>
+ 
+        <ul id="checklist" class="checklist">
+          <li><label><input type="checkbox"> <span>Las carpetas <code>css/</code>, <code>js/</code> e <code>img/</code> existen y cada archivo está en la suya.</span></label></li>
+          <li><label><input type="checkbox"> <span>Con Live Server, los estilos, la foto y el JavaScript siguen funcionando.</span></label></li>
+          <li><label><input type="checkbox"> <span>Cada <code>&lt;img&gt;</code> tiene un <code>alt</code> que describe lo que se ve.</span></label></li>
+          <li><label><input type="checkbox"> <span>Hay un solo <code>&lt;h1&gt;</code> y los <code>&lt;h2&gt;</code> siguen un orden lógico.</span></label></li>
+          <li><label><input type="checkbox"> <span>El <code>&lt;head&gt;</code> tiene <code>meta description</code> y un <code>title</code> descriptivo.</span></label></li>
+          <li><label><input type="checkbox"> <span>Con la tecla <code>Tab</code> llego a todos los enlaces, al formulario y a los botones.</span></label></li>
+          <li><label><input type="checkbox"> <span>Siempre veo dónde está el foco (el contorno dorado).</span></label></li>
+          <li><label><input type="checkbox"> <span>Revisé con DevTools el contraste de al menos un texto sobre su fondo.</span></label></li>
+        </ul>
+ 
+        <!-- Los commits de hoy, en orden. -->
+        <h3>Los commits de hoy</h3>
+<pre class="terminal"><span class="prompt">$</span> git status                                   <span class="comentario-term"># todo al día antes de empezar</span>
+<span class="prompt">$</span> git add .
+<span class="prompt">$</span> git commit -m "Reorganiza el proyecto en carpetas css, js e img"
+<span class="prompt">$</span> git add .
+<span class="prompt">$</span> git commit -m "Reorganiza la lista de tareas en carpetas css y js"
+<span class="prompt">$</span> git add .
+<span class="prompt">$</span> git commit -m "Mejora accesibilidad y agrega meta description"
+<span class="prompt">$</span> git push
+<span class="prompt">$</span> git log --oneline</pre>
+ 
+        <h3>Práctica de hoy</h3>
+        <div class="lab-grid">
+          <article class="tarjeta-js ejercicio">
+            <span class="num">1</span>
+            <h3>Punto de partida</h3>
+            <p>Revisa con <code>git status</code> y <code>git log --oneline</code> que tu proyecto está al día con GitHub.</p>
+            <p class="salida">nothing to commit, working tree clean</p>
+          </article>
+          <article class="tarjeta-js ejercicio">
+            <span class="num">2</span>
+            <h3>Crear las carpetas</h3>
+            <p>Crea <code>css/</code>, <code>js/</code> e <code>img/</code> y mueve cada archivo a la suya.</p>
+            <p class="salida">3 carpetas nuevas</p>
+          </article>
+          <article class="tarjeta-js ejercicio">
+            <span class="num">3</span>
+            <h3>Actualizar las rutas</h3>
+            <p>Cambia el <code>link</code>, los <code>script</code> y el <code>img</code> en los dos HTML del Proyecto 1.</p>
+            <p class="salida">Todo se ve igual que antes ✔️</p>
+          </article>
+          <article class="tarjeta-js ejercicio">
+            <span class="num">4</span>
+            <h3>Proyecto 2</h3>
+            <p>Lo mismo dentro de <code>lista/</code>: <code>css/lista.css</code> y <code>js/lista.js</code>.</p>
+            <p class="salida">La lista sigue funcionando ✔️</p>
+          </article>
+          <article class="tarjeta-js ejercicio">
+            <span class="num">5</span>
+            <h3>SEO</h3>
+            <p>Agrega <code>meta description</code>, <code>meta viewport</code> y un <code>title</code> descriptivo.</p>
+            <p class="salida">El head está completo</p>
+          </article>
+          <article class="tarjeta-js ejercicio">
+            <span class="num">6</span>
+            <h3>Prueba con Tab</h3>
+            <p>Recorre tu página sin mouse. Agrega el enlace "Saltar al contenido" y el foco dorado.</p>
+            <p class="salida">Llego a todo con el teclado</p>
+          </article>
+          <article class="tarjeta-js ejercicio">
+            <span class="num">7</span>
+            <h3>Contraste</h3>
+            <p>Revisa el botón con DevTools y oscurece el color si no llega a 4.5 : 1.</p>
+            <p class="salida">Contrast ✔️ AA</p>
+          </article>
+          <article class="tarjeta-js ejercicio reto">
+            <span class="num">★</span>
+            <h3>Reto: .gitignore</h3>
+            <p>Crea un archivo <code>.gitignore</code> con la línea <code>.vscode/</code> para que Git no suba la configuración de VS Code.</p>
+            <p class="salida">.vscode ya no se sube</p>
+          </article>
+        </div>
+ 
+        <!-- Tarea para la Clase 16, con el recuadro dorado de siempre. -->
+        <div class="tarea-clase">
+          <h3>Para la Clase 16: repaso general</h3>
+          <ol>
+            <li>Confirma que tus dos proyectos están reorganizados en <code>css/</code>, <code>js/</code> e <code>img/</code>, con los cambios de accesibilidad y SEO <strong>subidos a GitHub</strong>.</li>
+            <li>Repasa los temas de todo el curso: HTML, CSS, JavaScript y Git, de principio a fin.</li>
+            <li>La Clase 16 empieza con un <strong>repaso general en forma de preguntas</strong>. ¡Llega con tus dudas anotadas!</li>
+          </ol>
+        </div>
+      </section>
+
+      <section id="clase16" class="clase-nueva">
+        <span class="etiqueta-clase">Clase 16</span>
+        <h2>Publicar nuestro sitio en internet</h2>
+        <p>Hasta hoy, nuestra página solo se podía ver en <strong>nuestra computadora</strong> (con
+           Live Server) o como <strong>código</strong> en GitHub. Hoy la publicamos: tendrá una
+           <strong>dirección propia</strong> que cualquier persona puede abrir desde su celular.</p>
+ 
+        <div class="aviso-hoy">
+          <strong>Hoy trabajamos en tres lugares:</strong> VS Code (el código), GitHub (el repositorio) y
+          <strong>Netlify</strong> (el sitio publicado). Si un cambio no aparece en internet, revisa
+          primero que hiciste <code>git push</code>.
+        </div>
+ 
+        <!-- Local vs. publicado, lado a lado (reutiliza .antes-despues de la
+             Clase 15 y el bloque .terminal de la Clase 14). -->
+        <h3>Antes y después: ¿dónde vive mi página?</h3>
+        <div class="antes-despues">
+          <div>
+            <h4>En mi computadora (Live Server)</h4>
+<pre class="terminal">http://127.0.0.1:5500/index.html
+ 
+<span class="comentario-term"># 127.0.0.1 = "esta misma computadora"</span>
+<span class="comentario-term"># solo YO puedo verla</span>
+<span class="comentario-term"># si apago la compu, desaparece</span></pre>
+          </div>
+          <div>
+            <h4>Publicada (Netlify)</h4>
+<pre class="terminal">https://alfredo-chay-pagina-personal.netlify.app
+ 
+<span class="comentario-term"># una dirección pública con https</span>
+<span class="comentario-term"># CUALQUIER persona puede verla</span>
+<span class="comentario-term"># funciona las 24 horas</span></pre>
+          </div>
+        </div>
+ 
+        <!-- El viaje de una página: reutiliza .flujo de la Clase 12. -->
+        <h3>¿Cómo llega mi página al celular de otra persona?</h3>
+        <ol class="flujo">
+          <li>1. Escribe la URL</li>
+          <li>2. El navegador pide la página</li>
+          <li>3. El servidor de Netlify la encuentra</li>
+          <li>4. Responde con HTML, CSS, JS e imágenes</li>
+          <li>5. ¡La página aparece!</li>
+        </ol>
+ 
+        <!-- Anatomía de una URL: cada parte en su propio color (.url-partes). -->
+        <h3>Las partes de una dirección web (URL)</h3>
+        <p class="url-partes">
+          <span class="parte protocolo">https://</span><span class="parte subdominio">astrid-pagina-personal</span><span class="parte dominio">.netlify.app</span><span class="parte ruta">/lista/lista.html</span>
+        </p>
+        <div class="lab-grid">
+          <article class="tarjeta-js">
+            <h3>https://</h3>
+            <p>El <strong>protocolo</strong>. La <em>s</em> significa "seguro": la información viaja cifrada. Netlify lo da gratis.</p>
+          </article>
+          <article class="tarjeta-js">
+            <h3>astrid-pagina-personal</h3>
+            <p>El <strong>nombre de mi sitio</strong>. Lo elijo yo en Netlify: minúsculas, números y guiones.</p>
+          </article>
+          <article class="tarjeta-js">
+            <h3>.netlify.app</h3>
+            <p>El <strong>dominio</strong> de Netlify. Es como la "colonia" donde vive mi sitio, junto a miles de sitios más.</p>
+          </article>
+          <article class="tarjeta-js">
+            <h3>/lista/lista.html</h3>
+            <p>La <strong>ruta</strong>: las mismas carpetas de mi proyecto. Por eso las rutas relativas funcionan igual.</p>
+          </article>
+        </div>
+ 
+        <!-- El generador: el código está al final de js/logica.js. -->
+        <h3>Generador: ¿cómo se llamará mi sitio?</h3>
+        <div class="generador">
+          <label for="nombre-sitio">Escribe el nombre que te gustaría para tu sitio:</label>
+          <input type="text" id="nombre-sitio" placeholder="Ej.: Página Personal de Alfredo Chay" autocomplete="off">
+          <p class="vista-url" aria-live="polite">
+            <span class="parte protocolo">https://</span><span id="vista-nombre" class="parte subdominio">tu-sitio</span><span class="parte dominio">.netlify.app</span>
+          </p>
+          <p id="consejo-url" class="consejo-url">Escribe arriba y mira cómo queda tu dirección.</p>
+        </div>
+ 
+        <!-- Comparación (tabla de la Clase 11, sin pastillas). -->
+        <h3>GitHub, GitHub Pages y Netlify: ¿quién hace qué?</h3>
+        <table class="tabla-selectores">
+          <thead>
+            <tr><th>Herramienta</th><th>¿Qué guarda o hace?</th><th>Dirección de ejemplo</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>GitHub</td><td>Guarda el <strong>código</strong> y su historial de commits.</td><td><code>github.com/usuario/pagina-personal</code></td></tr>
+            <tr><td>GitHub Pages</td><td>Publica el repositorio como sitio, sin otra cuenta.</td><td><code>usuario.github.io/pagina-personal</code></td></tr>
+            <tr><td>Netlify</td><td>Publica el sitio y lo <strong>actualiza solo</strong> con cada push.</td><td><code>mi-sitio.netlify.app</code></td></tr>
+          </tbody>
+        </table>
+ 
+        <!-- El despliegue continuo, dibujado como una "tubería" (.pipeline). -->
+        <h3>Despliegue continuo: un push actualiza el sitio</h3>
+        <div class="pipeline">
+          <div class="paso-pipeline">💻<strong>VS Code</strong><span>Hago un cambio</span></div>
+          <div class="paso-pipeline">⬆️<strong>git push</strong><span>Lo subo</span></div>
+          <div class="paso-pipeline">🐙<strong>GitHub</strong><span>Guarda el commit</span></div>
+          <div class="paso-pipeline">⚙️<strong>Netlify</strong><span>Lo detecta y publica</span></div>
+          <div class="paso-pipeline final">🌐<strong>Internet</strong><span>¡Ya se ve!</span></div>
+        </div>
+ 
+        <h3>Práctica de hoy</h3>
+        <div class="lab-grid">
+          <article class="tarjeta-js ejercicio">
+            <span class="num">1</span>
+            <h3>Cerrar la Clase 15</h3>
+            <p><code>git add .</code>, <code>git commit</code> y <code>git push</code> de la reorganización.</p>
+            <p class="salida">renamed: styles.css -&gt; css/styles.css</p>
+          </article>
+          <article class="tarjeta-js ejercicio">
+            <span class="num">2</span>
+            <h3>Verificación previa</h3>
+            <p>En GitHub: <code>index.html</code> en la raíz, carpetas <code>css/</code>, <code>js/</code> e <code>img/</code>.</p>
+            <p class="salida">Todo listo para publicar ✔️</p>
+          </article>
+          <article class="tarjeta-js ejercicio">
+            <span class="num">3</span>
+            <h3>Cuenta en Netlify</h3>
+            <p>Regístrate en <code>netlify.com</code> con <strong>tu cuenta de GitHub</strong>.</p>
+            <p class="salida">Netlify ✔️ GitHub conectados</p>
+          </article>
+          <article class="tarjeta-js ejercicio">
+            <span class="num">4</span>
+            <h3>Importar el proyecto</h3>
+            <p><em>Add new project → Import an existing project → GitHub</em> y elige tu repositorio.</p>
+            <p class="salida">pagina-personal seleccionado</p>
+          </article>
+          <article class="tarjeta-js ejercicio">
+            <span class="num">5</span>
+            <h3>Deploy</h3>
+            <p>Deja vacíos el build command y el publish directory, y presiona <strong>Deploy</strong>.</p>
+            <p class="salida">Published ✔️</p>
+          </article>
+          <article class="tarjeta-js ejercicio">
+            <span class="num">6</span>
+            <h3>Nombre del sitio</h3>
+            <p>Cámbialo en la configuración del proyecto. Usa el generador de arriba para elegirlo.</p>
+            <p class="salida">mi-nombre.netlify.app</p>
+          </article>
+          <article class="tarjeta-js ejercicio">
+            <span class="num">7</span>
+            <h3>Proyecto 2 en línea</h3>
+            <p>Abre <code>/lista/lista.html</code> en tu URL y prueba agregar, completar y eliminar.</p>
+            <p class="salida">La lista funciona en internet ✔️</p>
+          </article>
+          <article class="tarjeta-js ejercicio">
+            <span class="num">8</span>
+            <h3>Despliegue continuo</h3>
+            <p>Agrega el bloque <code>.en-linea</code> al footer, haz push y mira cómo Netlify publica solo.</p>
+            <p class="salida">Building → Published</p>
+          </article>
+          <article class="tarjeta-js ejercicio reto">
+            <span class="num">★</span>
+            <h3>Reto: GitHub Pages</h3>
+            <p>En tu repositorio: <em>Settings → Pages</em>, rama <code>main</code>, carpeta <code>/ (root)</code> y <em>Save</em>.</p>
+            <p class="salida">usuario.github.io/pagina-personal</p>
+          </article>
+        </div>
+ 
+    </main>
+ 
     <footer>
-      <p>Contáctame en <a href="mailto:astridcuxulic@gmail.com">astridcuxulic@gmail.com</a></p>
+      <p>Contáctame en <a href="mailto:alfredochay2018@gmail.com">alfredochay2018@gmail.com</a></p>
     </footer>
  
     <!-- CAMBIO DE HOY (Clase 9): así se conecta JavaScript a una página.
@@ -730,7 +1103,8 @@ correo.value.includes("@"); // true</pre>
          - se coloca AL FINAL del <body>, justo antes de </body>, para
            que el navegador primero dibuje toda la página y después
            ejecute el JavaScript. -->
-    <script src="logica.js"></script>
+    <!-- CAMBIO DE HOY (Clase 15) · ORGANIZACIÓN: logica.js ahora vive en la
+         carpeta js/. -->
+    <script src="js/logica.js"></script>
   </body>
 </html>
-

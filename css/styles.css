@@ -111,8 +111,13 @@ input:focus, textarea:focus, select:focus {
   outline: none;
 }
 
+/* CAMBIO DE HOY (Clase 15) · ACCESIBILIDAD (contraste): el turquesa
+   #3fb8af con letras blancas tenía un contraste de 2.4 : 1, y lo mínimo
+   recomendado para texto normal es 4.5 : 1. Lo cambiamos por un turquesa
+   más oscuro (#1f7a73, contraste 5.1 : 1). Sigue siendo "nuestro" color,
+   pero ahora se lee bien. */
 button {
-  background-color: #3fb8af;
+  background-color: #1f7a73;
   color: white;
   border: none;
   padding: 8px 16px;
@@ -122,12 +127,12 @@ button {
 }
 
 button:hover {
-  background-color: #2f8f88;
+  background-color: #185f59;   /* CAMBIO DE HOY (Clase 15): hover un poco más oscuro que el nuevo color */
   transform: scale(1.05);
 }
  
 button:focus {
-  background-color: #2f8f88;
+  background-color: #185f59;   /* CAMBIO DE HOY (Clase 15): igual que el hover */
   outline: 3px solid #1c7293;
   outline-offset: 2px;
 }
@@ -1004,4 +1009,404 @@ main {
 .commit-bien .salida,
 .commit-mal .salida {
   margin: 0.4rem 0;
+}
+
+/* ===================================================
+   CLASE 15: ORGANIZACIÓN, ACCESIBILIDAD Y SEO
+   CAMBIO DE HOY (Clase 15): este archivo ahora vive en la
+   carpeta css/ (antes estaba suelto junto a index.html).
+   Aquí abajo están los estilos nuevos de hoy: todos tienen
+   que ver con que MÁS personas puedan usar la página.
+   =================================================== */
+
+/* CAMBIO DE HOY (Clase 15): la foto tiene width y height en el HTML (para
+   que el navegador reserve su espacio). height: auto mantiene la
+   proporción cuando max-width: 100% la encoge en el celular; sin esto, la
+   foto se vería aplastada. */
+img {
+  height: auto;
+}
+
+/* CAMBIO DE HOY (Clase 15) · ACCESIBILIDAD: el enlace "Saltar al
+   contenido". Normalmente está FUERA de la pantalla (top: -100px), así
+   que no estorba a quien usa el mouse. Cuando recibe el foco con la tecla
+   Tab, :focus lo baja a la vista (top: 0.5rem). position: absolute (Clase
+   6) lo pone encima de todo sin mover el resto de la página. */
+.saltar {
+  position: absolute;
+  top: -100px;
+  left: 0.5rem;
+  z-index: 100;
+  background-color: #17263a;
+  color: white;
+  font-weight: bold;
+  padding: 0.7rem 1.2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: top 0.2s ease;
+}
+
+.saltar:focus {
+  top: 0.5rem;
+  outline: 3px solid #e8b054;
+}
+
+/* CAMBIO DE HOY (Clase 15) · ACCESIBILIDAD: texto solo para lectores de
+   pantalla. Lo hacemos de 1 píxel y lo recortamos, en lugar de usar
+   display: none, porque display: none también lo esconde de los lectores.
+   Lo usamos en el <caption> de la tabla. */
+.solo-lectores {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* CAMBIO DE HOY (Clase 15) · ACCESIBILIDAD: un foco VISIBLE en todo lo que
+   se puede usar con el teclado. :focus-visible se activa cuando se llega
+   con Tab (y no con un clic del mouse). El contorno dorado se ve tanto en
+   fondo claro como en el azul del header. */
+a:focus-visible,
+button:focus-visible,
+ul li:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid #e8b054;
+  outline-offset: 3px;
+}
+
+/* En los enlaces del menú, además del contorno, mostramos el mismo fondo
+   del :hover (Clase 8): quien usa teclado ve lo mismo que quien usa mouse. */
+header nav a:focus-visible {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Los intereses que se activan con teclado también crecen, como con el
+   mouse. */
+ul li:focus-visible {
+  transform: scale(1.08);
+}
+
+/* ---------- Laboratorio (practica-js.html, id="clase15") ---------- */
+
+/* CAMBIO DE HOY (Clase 15): la estructura de carpetas, antes y después,
+   en dos columnas de Grid (Clase 7). En el celular, una debajo de otra. */
+.antes-despues {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin: 0.8rem 0 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .antes-despues {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.antes-despues .terminal {
+  margin: 0;
+}
+
+/* El mismo detalle de Grid de las Clases 10 y 14: min-width: 0 deja que
+   cada columna se encoja en el celular, y el overflow-x: auto de
+   .terminal agrega la barra de desplazamiento en vez de desbordar. */
+.antes-despues > div {
+  min-width: 0;
+}
+
+.antes-despues h4 {
+  margin: 0 0 0.4rem;
+  color: #065a82;
+}
+
+/* CAMBIO DE HOY (Clase 15): la checklist de la auditoría. Es una lista de
+   <label> con su checkbox: al hacer clic en el texto se marca la casilla
+   (la misma unión label + input de la Clase 3). */
+.checklist {
+  list-style: none;
+  padding: 0;
+  margin: 0.8rem 0;
+  display: grid;
+  /* minmax(0, 1fr): una sola columna que puede encogerse hasta 0. Sin esto,
+     Grid hace la columna tan ancha como la frase más larga y, en el
+     celular, la lista se sale de la pantalla. */
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.5rem;
+}
+
+.checklist li {
+  background-color: #f3f8fa;
+  border: 1px solid #dde7ee;
+  border-left: 5px solid #b7c3cd;
+  border-radius: 8px;
+  padding: 0;
+  font-weight: normal;
+  color: #1a2433;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Las reglas de "ul li" de los intereses no aplican aquí. */
+.checklist li:hover {
+  transform: none;
+  background-color: #eaf1f8;
+}
+
+.checklist label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  padding: 0.7rem 0.9rem;
+  cursor: pointer;
+}
+
+.checklist input {
+  width: 1.2rem;
+  height: 1.2rem;
+  margin-top: 0.1rem;
+  accent-color: #1f7a73;   /* el color de la palomita de la casilla */
+  flex-shrink: 0;
+}
+
+/* logica.js le pone la clase .hecho al <li> cuando su casilla se marca. */
+.checklist li.hecho {
+  background-color: #e7f5f3;
+  border-left-color: #1f7a73;
+}
+
+.checklist li.hecho label {
+  color: #1c6b5f;
+}
+
+/* La barra de progreso: un contenedor gris y, adentro, una barra cuyo
+   ancho (width) lo cambia logica.js con style.width (Clase 12). */
+.progreso {
+  background-color: #dde7ee;
+  border-radius: 999px;
+  height: 14px;
+  overflow: hidden;
+  margin: 0.4rem 0 0.3rem;
+}
+
+.progreso-barra {
+  height: 100%;
+  width: 0%;
+  background-color: #1f7a73;
+  border-radius: 999px;
+  transition: width 0.4s ease;   /* la barra crece suavemente (Clase 8) */
+}
+
+.progreso-texto {
+  font-weight: bold;
+  color: #065a82;
+  margin: 0 0 1rem;
+}
+
+/* CAMBIO DE HOY (Clase 15): los comentarios (#) dentro del bloque de la
+   terminal, en gris, como en el editor. */
+.terminal .comentario-term {
+  color: #8fa3b5;
+  font-style: italic;
+}
+
+.en-linea {
+  max-width: 520px;
+  margin: 1.2rem auto 0.8rem;
+  background-color: #17263a;
+  color: #e3eef2;
+  border: 2px solid #3fb8af;
+  border-radius: 14px;
+  padding: 1rem 1.2rem;
+  animation: aparecer 0.6s ease-out;   /* la animación de la Clase 8 */
+}
+ 
+.en-linea p {
+  margin: 0.3rem 0;
+}
+ 
+.en-linea-estado {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-weight: bold;
+  color: #3fb8af;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.85rem;
+}
+ 
+/* El punto verde que "late": un círculo (border-radius: 50%) con una
+   animación infinita que lo agranda y lo hace transparente, como la luz
+   de "en vivo" de una transmisión. */
+.punto-vivo {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #2ecc71;
+  animation: latido 1.6s ease-in-out infinite;
+}
+ 
+@keyframes latido {
+  0%   { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.7); }
+  70%  { box-shadow: 0 0 0 10px rgba(46, 204, 113, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0); }
+}
+ 
+.en-linea-texto {
+  font-size: 0.95rem;
+}
+ 
+/* Los dos enlaces, como pastillas que bajan de línea en el celular. */
+.en-linea-enlaces {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.6rem !important;
+}
+ 
+.en-linea-enlaces a {
+  color: #17263a;
+  background-color: #e8b054;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  overflow-wrap: anywhere;   /* una URL larga puede partirse en el celular */
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+ 
+.en-linea-enlaces a:hover {
+  transform: translateY(-2px);
+  background-color: #f2c47a;
+}
+ 
+/* En modo oscuro (Clase 12) el footer pinta todos sus enlaces de
+   turquesa; aquí mantenemos el texto oscuro sobre el dorado. */
+body.modo-oscuro footer .en-linea-enlaces a {
+  color: #17263a;
+}
+ 
+/* ---------- Laboratorio (practica-js.html, id="clase16") ---------- */
+ 
+/* CAMBIO DE HOY (Clase 16): una URL dividida en partes de colores. Cada
+   <span class="parte"> es un trozo de la dirección. */
+.url-partes,
+.vista-url {
+  font-family: "Courier New", monospace;
+  font-size: 1.15rem;
+  font-weight: bold;
+  background-color: #0f1b2b;
+  padding: 0.9rem 1.1rem;
+  border-radius: 8px;
+  overflow-wrap: anywhere;   /* en el celular la URL baja de línea */
+}
+ 
+.parte.protocolo  { color: #8fa3b5; }
+.parte.subdominio { color: #e8b054; }
+.parte.dominio    { color: #3fb8af; }
+.parte.ruta       { color: #f2a97e; }
+ 
+/* CAMBIO DE HOY (Clase 16): el generador del nombre del sitio. Reutiliza
+   la idea de "tarjeta" de las clases anteriores. */
+.generador {
+  background-color: #f3f8fa;
+  border: 1px solid #dde7ee;
+  border-top: 4px solid #e8b054;
+  border-radius: 8px;
+  padding: 1rem 1.2rem;
+  margin: 0.8rem 0 1.5rem;
+}
+ 
+.generador label {
+  display: block;
+  font-weight: bold;
+  color: #065a82;
+  margin-bottom: 0.4rem;
+}
+ 
+.generador input {
+  width: 100%;
+  box-sizing: border-box;   /* el padding no hace que se salga (Clase 5) */
+  font-size: 1rem;
+  padding: 0.6rem 0.8rem;
+}
+ 
+.vista-url {
+  margin: 0.8rem 0 0.4rem;
+}
+ 
+/* El consejo cambia de color según lo que escribas: logica.js le pone
+   la clase .ok (verde) o .aviso (dorado). */
+.consejo-url {
+  margin: 0;
+  padding: 0.5rem 0.8rem;
+  border-radius: 6px;
+  background-color: #eaf1f8;
+  color: #065a82;
+  font-weight: bold;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+ 
+.consejo-url.ok {
+  background-color: #e7f5f3;
+  color: #1c6b5f;
+}
+ 
+.consejo-url.aviso {
+  background-color: #fff8e8;
+  color: #8a5a00;
+}
+ 
+/* CAMBIO DE HOY (Clase 16): el despliegue continuo como una "tubería" de
+   cinco pasos con Grid (Clase 7): una columna en el celular, cinco en
+   pantallas grandes. */
+.pipeline {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.6rem;
+  margin: 0.8rem 0 1.5rem;
+}
+ 
+@media (min-width: 768px) {
+  .pipeline {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+ 
+.paso-pipeline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.2rem;
+  font-size: 1.6rem;
+  background-color: #eaf1f8;
+  border: 2px solid #cfd8e3;
+  border-radius: 10px;
+  padding: 0.8rem 0.5rem;
+  transition: transform 0.2s ease;
+}
+ 
+.paso-pipeline:hover {
+  transform: translateY(-3px);
+}
+ 
+.paso-pipeline strong {
+  font-size: 1rem;
+  color: #065a82;
+}
+ 
+.paso-pipeline span {
+  font-size: 0.85rem;
+  color: #5b6b76;
+}
+ 
+.paso-pipeline.final {
+  background-color: #e7f5f3;
+  border-color: #3fb8af;
 }

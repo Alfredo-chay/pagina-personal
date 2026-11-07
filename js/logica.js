@@ -2,6 +2,8 @@
    CLASE 9: INTRODUCCIÓN A JAVASCRIPT Y CONDICIONALES
    ===================================================
    CAMBIO DE HOY (Clase 9): este archivo es NUEVO.
+   CAMBIO DE HOY (Clase 15): ahora vive en la carpeta js/.
+   practica-js.html lo carga con <script src="js/logica.js">.
 
    Es el primer archivo de JavaScript de nuestra landing page.
    Vive en la MISMA carpeta del proyecto (junto a index.html y
@@ -65,7 +67,7 @@ let mesesDePractica = 1;        // esto sí cambia con el tiempo → let
 console.log("Nombre:", nombre);
 console.log("Meses de práctica (antes):", mesesDePractica);
 
-mesesDePractica = mesesDePractica + 1;   // ✔ con let SÍ se puede reasignar
+mesesDePractica = mesesDePractica + 1;   // ✔️ con let SÍ se puede reasignar
 console.log("Meses de práctica (después):", mesesDePractica);
 
 // nombre = "Otra persona";
@@ -297,9 +299,9 @@ titulo("Ejercicio 5 · ¿Puede tomar el curso?");
 const edadAspirante = 17;
 
 if (edadAspirante >= 16 && tieneComputadora) {
-  console.log("Puede tomar el curso ✔");
+  console.log("Puede tomar el curso ✔️");
 } else {
-  console.log("Todavía no puede tomar el curso ✖");
+  console.log("Todavía no puede tomar el curso ✖️");
 }
 
 
@@ -399,7 +401,7 @@ for (let i = 0; i < misIntereses.length; i++) {
    ---------------------------------------------------
    Se usa cuando NO sabemos cuántas vueltas habrá: repite
    MIENTRAS la condición sea true.
-   ⚠ La variable de la condición tiene que cambiar DENTRO
+   ⚠️ La variable de la condición tiene que cambiar DENTRO
    del ciclo (aquí, intentos++). Si la olvidamos, la
    condición nunca se vuelve false y el ciclo se repite
    para siempre: un CICLO INFINITO, que congela la pestaña.
@@ -630,3 +632,112 @@ demoBoton.addEventListener("click", function () {
   }
   console.log("Clic número", clics);
 });
+
+
+/* ===================================================
+   CAMBIO DE HOY (Clase 15): CHECKLIST DE LA AUDITORÍA
+   ===================================================
+   La checklist del laboratorio (sección Clase 15) cuenta
+   cuántas casillas están marcadas y mueve una barra de
+   progreso. Junta muchas cosas del curso:
+   - querySelectorAll + for (Clases 10 y 11)
+   - el evento "change" (como "input" de la Clase 12, pero
+     para casillas: ocurre al marcar o desmarcar)
+   - checkbox.checked → true si la casilla está marcada
+   - classList.toggle con un 2.º argumento: toggle("hecho", true)
+     PONE la clase y toggle("hecho", false) la QUITA.
+   - style.width para el ancho de la barra (Clase 12)      */
+titulo("Clase 15 · Checklist de accesibilidad");
+
+const casillas = document.querySelectorAll("#checklist input");
+const barra = document.querySelector("#progreso-barra");
+const textoProgreso = document.querySelector("#progreso-texto");
+
+function actualizarProgreso() {
+  let marcadas = 0;
+
+  for (let i = 0; i < casillas.length; i++) {
+    // closest("li") busca el <li> que contiene a la casilla.
+    const fila = casillas[i].closest("li");
+    fila.classList.toggle("hecho", casillas[i].checked);
+
+    if (casillas[i].checked) {
+      marcadas++;
+    }
+  }
+
+  // Porcentaje: marcadas entre el total, por 100 (Clase 9).
+  const porcentaje = (marcadas / casillas.length) * 100;
+  barra.style.width = porcentaje + "%";
+
+  if (marcadas === casillas.length) {
+    textoProgreso.textContent = "🎉 ¡" + marcadas + " de " + casillas.length + "! Tu página está lista para publicarse.";
+  } else {
+    textoProgreso.textContent = marcadas + " de " + casillas.length + " revisados";
+  }
+}
+
+for (let i = 0; i < casillas.length; i++) {
+  // Fíjense: actualizarProgreso va SIN paréntesis. Le entregamos la función
+  // para que el navegador la llame cuando ocurra el evento; con paréntesis
+  // la ejecutaríamos una sola vez, ahora mismo.
+  casillas[i].addEventListener("change", actualizarProgreso);
+}
+
+actualizarProgreso();   // primer dibujo: 0 de 8
+
+titulo("Clase 16 · Generador del nombre del sitio");
+ 
+const inputSitio = document.querySelector("#nombre-sitio");
+const vistaNombre = document.querySelector("#vista-nombre");
+const consejoUrl = document.querySelector("#consejo-url");
+ 
+// Una función (Clase 10) que recibe un texto y devuelve el nombre limpio.
+// Cada línea hace UNA transformación, en orden:
+function crearNombreSitio(texto) {
+  return texto
+    .toLowerCase()                       // 1. todo a minúsculas: "Página" → "página"
+    .normalize("NFD")                    // 2. separa la letra de su tilde: "á" → "a" + "´"
+    .replace(/[̀-ͯ]/g, "")     // 3. borra las tildes que quedaron sueltas
+    .replace(/ñ/g, "n")                  // 4. (por si acaso) ñ → n
+    .replace(/[^a-z0-9]+/g, "-")         // 5. lo que NO sea letra o número → un guion
+    .replace(/^-+|-+$/g, "");            // 6. quita los guiones del principio y del final
+}
+/* ¿Qué es eso de /.../g? Se llama EXPRESIÓN REGULAR: un "patrón" para
+   buscar texto. Por ejemplo, /[^a-z0-9]+/g significa "uno o más
+   caracteres que NO sean letras de la a a la z ni números", y la g
+   (global) dice "todas las veces que aparezca, no solo la primera".
+   No hace falta memorizarlas: lo importante es entender QUÉ hace cada
+   línea. */
+ 
+inputSitio.addEventListener("input", function () {
+  const original = inputSitio.value;
+  const nombre = crearNombreSitio(original);
+ 
+  // Limpiamos los colores del intento anterior (como en la Clase 12).
+  consejoUrl.classList.remove("ok", "aviso");
+ 
+  if (nombre === "") {
+    vistaNombre.textContent = "tu-sitio";
+    consejoUrl.textContent = "Escribe arriba y mira cómo queda tu dirección.";
+  } else if (nombre.length > 63) {
+    // Netlify acepta nombres de hasta 63 caracteres.
+    vistaNombre.textContent = nombre;
+    consejoUrl.textContent = "⚠️ Muy largo: " + nombre.length + " caracteres. Usa 63 o menos.";
+    consejoUrl.classList.add("aviso");
+  } else if (nombre !== original) {
+    // Hubo que cambiar algo (mayúsculas, espacios, tildes...).
+    vistaNombre.textContent = nombre;
+    consejoUrl.textContent = "✎ Lo ajustamos: en una URL no van mayúsculas, espacios ni tildes.";
+    consejoUrl.classList.add("aviso");
+  } else {
+    vistaNombre.textContent = nombre;
+    consejoUrl.textContent = "✔️ ¡Nombre válido! Así quedaría tu sitio en Netlify.";
+    consejoUrl.classList.add("ok");
+  }
+ 
+  console.log("Escribiste:", original, "→ nombre del sitio:", nombre);
+});
+ 
+console.log("%c¡Clase 16! Este laboratorio ya puede estar publicado en internet 🌐",
+  "color:#e8b054; font-weight:bold;");

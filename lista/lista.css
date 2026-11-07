@@ -1,3 +1,9 @@
+ /* ===================================================
+   PROYECTO 2 · LISTA DE TAREAS — ESTILOS
+   CAMBIO DE HOY (Clase 15): este archivo ahora vive en
+   lista/css/. Lo carga lista.html con href="css/lista.css".
+   =================================================== */
+
 body {
   margin: 0;
   min-height: 100vh;
@@ -11,6 +17,8 @@ body {
   background: linear-gradient(160deg, #1b2a4a 0%, #065a82 100%);
 }
 
+/* CAMBIO DE HOY (Clase 15): ahora el header tiene un <nav> adentro, así que
+   el nav es quien acomoda los enlaces en fila con Flexbox. */
 .nav-app {
   width: 100%;
   max-width: 520px;
@@ -19,6 +27,14 @@ body {
   justify-content: space-between;
   gap: 0.5rem;
   margin-bottom: 1rem;
+}
+
+.nav-app nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem;
+  width: 100%;
 }
 
 .nav-app a {
@@ -30,7 +46,8 @@ body {
   transition: background-color 0.3s ease;
 }
 
-.nav-app a:hover {
+.nav-app a:hover,
+.nav-app a:focus-visible {   /* CAMBIO DE HOY (Clase 15): mismo efecto con el teclado */
   background-color: rgba(255, 255, 255, 0.2);
 }
 
@@ -88,8 +105,10 @@ body {
   outline: none;
 }
 
+/* CAMBIO DE HOY (Clase 15) · CONTRASTE: blanco sobre #3fb8af era 2.4 : 1;
+   con #1f7a73 sube a 5.1 : 1 (lo mínimo es 4.5 : 1). */
 button {
-  background-color: #3fb8af;
+  background-color: #1f7a73;
   color: white;
   border: none;
   padding: 0.7rem 1.1rem;
@@ -101,12 +120,12 @@ button {
 }
 
 button:hover {
-  background-color: #2f8f88;
+  background-color: #185f59;
   transform: scale(1.05);
 }
 
 button:focus-visible {
-  outline: 3px solid #1c7293;
+  outline: 3px solid #e8b054;   /* CAMBIO DE HOY (Clase 15): el mismo foco dorado de la landing page */
   outline-offset: 2px;
 }
 
@@ -165,7 +184,7 @@ button:focus-visible {
 .lista-tareas li.completada {
   background-color: #e7f5f3;
   border-left-color: #3fb8af;
-  color: #8a9aa6;
+  color: #5b6b76;   /* CAMBIO DE HOY (Clase 15) · CONTRASTE: #8a9aa6 daba 2.6 : 1; #5b6b76 da 4.9 : 1 */
 }
 
 .lista-tareas li.completada span {
@@ -220,5 +239,20 @@ button:focus-visible {
   margin: 1.5rem 0 0;
   text-align: center;
   font-size: 0.8rem;
-  color: #8a9aa6;
+  color: #5b6b76;   /* CAMBIO DE HOY (Clase 15) · CONTRASTE: #8a9aa6 daba 2.9 : 1 sobre blanco */
+}
+
+/* CAMBIO DE HOY (Clase 15) · ACCESIBILIDAD: foco visible en todo lo que se
+   usa con el teclado (enlaces, campo y botones). */
+a:focus-visible,
+input:focus-visible {
+  outline: 3px solid #e8b054;
+  outline-offset: 3px;
+}
+
+/* CAMBIO DE HOY (Clase 16): el enlace del pie ("volver a mi página") en
+   turquesa oscuro, para que se distinga del texto gris. */
+.pie a {
+  color: #1f7a73;
+  font-weight: bold;
 }

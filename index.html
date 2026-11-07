@@ -2,12 +2,16 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8">
-    <title>Mi Página Personal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Página personal de Alfredo: estudiante de desarrollo web. Conoce mis intereses, mis avances en HTML, CSS y JavaScript y contáctame.">
+
+    <title>Alfredo - Mi Página Personal | Desarrollo Web</title>
 
     <!-- Cambio de Hoy: conectar el html con el css-->
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/styles.css">
   </head>
   <body>
+    <a href="#contenido" class="saltar">Saltar al contenido principal</a>
     <!-- CAMBIO DE HOY (Clase 8): este header es, a partir de hoy, el
          primer elemento que el usuario ve aparecer con una animación
          (opacity + translateY) definida con @keyframes en styles.css —
@@ -26,7 +30,7 @@
            cualquiera de ellos, aparece un fondo claro semi-transparente
            que se desvanece suavemente (ver "header nav a:hover" y su
            transition en styles.css). No se tocó ningún atributo aquí. -->
-      <nav>
+      <nav aria-label="Menú principal">
         <a href="#sobre-mi">Sobre mí</a>
         <a href="#intereses">Intereses</a>
         <a href="#avances">Mis avances</a>
@@ -49,7 +53,7 @@
            formulario: solo existe para que JavaScript escuche su "click".
            El id="btn-tema" es el "nombre" con el que script.js lo encuentra
            usando querySelector("#btn-tema"). -->
-      <button type="button" id="btn-tema" class="btn-tema">🌙 Modo oscuro</button>
+      <button type="button" id="btn-tema" class="btn-tema" aria-pressed="false">🌙 Modo oscuro</button>
 
     </header>
 
@@ -59,7 +63,7 @@
          styles.css. Como siempre, el efecto completo vive en el CSS;
          aquí en el HTML no se necesita ningún cambio. -->
 
-    <main>
+    <main id="contenido">
       <h2 id="sobre-mi">Sobre mí</h2>
 
       <!-- CAMBIO DE HOY (Clase 12): párrafo VACÍO a propósito. No escribimos
@@ -71,7 +75,7 @@
 
       <div class="sobre-mi-grid">
         <p>Soy <strong class="destacado">Alfredo</strong> y estoy aprendiendo <em>desarrollo web</em>.</p>
-        <img src=" imagenes/Foto_Alfredo.jpg" alt="Foto de perfil" width="200">
+        <img src=" img/Foto_Alfredo.jpg" alt="alfredo sonriendo en el canal de Panamá" with="300" height="300">
 
         <!-- CAMBIO DE HOY (Clase 12): el <span> vacío es el contador de
              favoritos. JavaScript escribe en él con textContent cada vez
@@ -87,6 +91,7 @@
 
         <h2 id="avances">Mis avances</h2>
         <table>
+          <caption class="solo-lectores">Mis avances por lenguaje</caption>
           <thead>
             <tr>
               <th>Lenguaje</th>
@@ -127,7 +132,7 @@
       <form novalidate>
         <p>
           <label for="nombre">Nombre:</label><br>
-          <input type="text" id="nombre" name="nombre">
+          <input type="text" id="nombre" name="nombre" autocomplete="name">
         </p>
         <p>
           <label for="correo">Correo:</label><br>
@@ -171,7 +176,7 @@
            Va DESPUÉS del </form> porque la regla "form p:last-of-type" de la
            Clase 6 pone en fila el último párrafo del formulario (el de los
            botones); si este <p> estuviera dentro, esa regla le tocaría a él. -->
-      <p id="mensaje-error" class="mensaje-form"></p>
+      <p id="mensaje-error" class="mensaje-form" aria-live="polite"></p>
 
     </main>
 
@@ -183,15 +188,23 @@
            otro color con style.backgroundColor. -->
       <p class="badge-js">⚡JavaScript conectado - abre la consola </p>
 
+      <div class="en linea"></div>
+      <p class="en-linea-estado"><span class="punto-vivo" aria-hidden="true"></span> sitio publicado en internet</p>
+      <p class="en-linea-texto">Visita esta página desde cualquier dispositivo</p>
+      <p class="en-linea-enlaces">
+        <a href="https://alfredo-chay-pagina-personal.netlify.app/" target="_blank" rel="noopener">alfredo-chay-pagina-personal.netlify.app</a>
+        <a href="https://alfredo-chay-pagina-personal.netlify.app/lista/lista.html" target="_blank" rel="noopener"> Mi lista de tareas en línea</a>
+      </p>
+
       <p>
         <a class="enlace-github" href="https://github.com/Alfredo-chay/pagina-personal.git">
-          <span class="icono-git">⎇</span> Ver el código de esta página en GitHub
+          <span class="icono-git" aria-hidden="true">⎇</span> Ver el código de esta página en GitHub
         </a>
       </p>
  
     </footer>
  
-    <script src="script.js"></script>
+    <script src="js/script.js"></script>
  
   </body>
 </html>

@@ -2,6 +2,8 @@
    CLASE 11: ARRAYS, OBJETOS E INTRODUCCIÓN AL DOM
    ===================================================
    CAMBIO DE HOY (Clase 11): este archivo es NUEVO.
+   CAMBIO DE HOY (Clase 15): ahora vive en la carpeta js/.
+   index.html lo carga con <script src="js/script.js">.
 
    ¿Por qué otro archivo si ya tenemos logica.js?
    - logica.js es nuestro "laboratorio": lo carga
@@ -87,14 +89,14 @@ for (let i = 0; i < secciones.length; i++) {
 seccion("1.3 · Objetos");
 
 const estudiante = {
-  nombre: "Alfredo",
+  nombre: "Astrid",
   edad: 21,
   nivel: "intermedio",
 };
 // La coma después del último valor es opcional; la dejamos
 // porque así es más fácil agregar otra propiedad después.
 
-console.log(estudiante.nombre);       // "Alfredo"  → notación de punto
+console.log(estudiante.nombre);       // "Astrid"  → notación de punto
 console.log(estudiante["edad"]);      // 21        → notación de corchetes
 
 // Los corchetes sirven cuando el NOMBRE de la propiedad está
@@ -197,7 +199,7 @@ for (let i = 0; i < secciones.length; i++) {
 seccion("Ejercicio 2 · Mi perfil");
 
 const perfil = {
-  nombre: "Alfredo",
+  nombre: "Astrid",
   curso: "Programación Web Básica",
   nivel: "Intermedio",
 };
@@ -342,6 +344,13 @@ botonTema.addEventListener("click", function () {
   } else {
     botonTema.textContent = "🌙 Modo oscuro";
   }
+
+  // CAMBIO DE HOY (Clase 15) · ACCESIBILIDAD: actualizamos aria-pressed
+  // para que el lector de pantalla anuncie si el modo oscuro está
+  // activado ("true") o no ("false"). setAttribute cambia (o crea) un
+  // atributo del HTML desde JavaScript.
+  const activo = document.body.classList.contains("modo-oscuro");
+  botonTema.setAttribute("aria-pressed", activo ? "true" : "false");
  
   console.log("Modo oscuro activo:", document.body.classList.contains("modo-oscuro"));
 });
@@ -368,13 +377,38 @@ function actualizarContador() {
   }
 }
  
+/* CAMBIO DE HOY (Clase 15) · ACCESIBILIDAD: antes, los intereses solo
+   funcionaban con el MOUSE (un <li> no recibe el foco del teclado). Ahora:
+   - tabIndex = 0       → el <li> se puede alcanzar con la tecla Tab.
+   - role = "button"    → el lector de pantalla lo anuncia como un botón.
+   - aria-pressed       → dice si el interés está marcado o no.
+   - evento "keydown"   → Enter o Espacio hacen lo mismo que un clic.
+   Para no repetir código, el cambio de favorito ahora vive en UNA función
+   (Clase 10) que usan los dos eventos: click y keydown. */
+function alternarFavorito(li) {
+  li.classList.toggle("favorito");
+  const marcado = li.classList.contains("favorito");
+  li.setAttribute("aria-pressed", marcado ? "true" : "false");
+  actualizarContador();
+  console.log("Favorito: " + li.textContent + " → " + marcado);
+}
+
 for (let i = 0; i < intereses.length; i++) {
+  intereses[i].tabIndex = 0;
+  intereses[i].setAttribute("role", "button");
+  intereses[i].setAttribute("aria-pressed", "false");
+
+  // Con el mouse (Clase 12).
   intereses[i].addEventListener("click", function () {
-    // Gracias a "let", cada vuelta recuerda SU propia i: el
-    // clic en "Diseño" cambia "Diseño" y no otro interés.
-    intereses[i].classList.toggle("favorito");
-    actualizarContador();
-    console.log("Clic en: " + intereses[i].textContent);
+    alternarFavorito(intereses[i]);
+  });
+
+  // Con el teclado (NUEVO). event.key dice qué tecla se presionó.
+  intereses[i].addEventListener("keydown", function (event) {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();   // la barra espaciadora no baja la página
+      alternarFavorito(intereses[i]);
+    }
   });
 }
  
@@ -407,21 +441,21 @@ formulario.addEventListener("submit", function (event) {
  
   // 2) Revisamos los campos en orden (if / else if de la Clase 9).
   if (nombreInput.value === "") {
-    mensajeError.textContent = "✖ El nombre es obligatorio.";
+    mensajeError.textContent = "✖️ El nombre es obligatorio.";
     mensajeError.classList.add("error");
     nombreInput.classList.add("campo-error");
     nombreInput.focus();   // el cursor regresa al campo con el error
  
   } else if (!correoInput.value.includes("@")) {
     // ! (NO, Clase 9): "si el correo NO incluye @"
-    mensajeError.textContent = "✖ El correo debe incluir una @ (ejemplo: nombre@correo.com).";
+    mensajeError.textContent = "✖️ El correo debe incluir una @ (ejemplo: nombre@correo.com).";
     mensajeError.classList.add("error");
     correoInput.classList.add("campo-error");
     correoInput.focus();
  
   } else {
     // 3) Todo está bien: mensaje de éxito con el nombre escrito.
-    mensajeError.textContent = "✔ ¡Gracias, " + nombreInput.value + "! Tu mensaje fue enviado correctamente.";
+    mensajeError.textContent = "✔️ ¡Gracias, " + nombreInput.value + "! Tu mensaje fue enviado correctamente.";
     mensajeError.classList.add("exito");
   }
  
@@ -465,3 +499,7 @@ formulario.addEventListener("reset", function () {
  
 console.log("%c¡Clase 12 completa! La página ya cambia, escucha eventos y valida el formulario.",
   "color:#3fb8af; font-weight:bold;");
+
+// CAMBIO DE HOY (Clase 15): mensaje de bienvenida a la nueva estructura.
+console.log("%c¡Clase 15! script.js ahora vive en js/ · la página es más accesible.",
+  "color:#e8b054; font-weight:bold;");
