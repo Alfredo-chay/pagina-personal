@@ -741,32 +741,3 @@ inputSitio.addEventListener("input", function () {
  
 console.log("%c¡Clase 16! Este laboratorio ya puede estar publicado en internet 🌐",
   "color:#e8b054; font-weight:bold;");
-
-
-
-
-
-
-  const botonTema = document.querySelector("#btn-tema");
-
-function aplicarTema(oscuro) {
-  document.body.classList.toggle("modo-oscuro", oscuro);
-  botonTema.textContent = oscuro ? "☀️ Modo claro" : "🌙 Modo oscuro";
-  botonTema.setAttribute("aria-pressed", oscuro ? "true" : "false");
-}
-
-// Al cargar: ¿qué eligió la persona la última vez?
-let temaGuardado = null;
-try {
-  temaGuardado = localStorage.getItem("tema");
-} catch (error) {}
-aplicarTema(temaGuardado === "oscuro");
-
-// Al hacer clic: cambiar y guardar.
-botonTema.addEventListener("click", function () {
-  const oscuro = !document.body.classList.contains("modo-oscuro");
-  aplicarTema(oscuro);
-  try {
-    localStorage.setItem("tema", oscuro ? "oscuro" : "claro");
-  } catch (error) {}
-});
