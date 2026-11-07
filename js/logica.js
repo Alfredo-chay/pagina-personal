@@ -61,7 +61,7 @@ function titulo(texto) {
      la usamos.                                           */
 titulo("1.2 · Variables con let y const");
 
-const nombre = "Astrid";        // mi nombre no va a cambiar → const
+const nombre = "Alfredo";        // mi nombre no va a cambiar → const
 let mesesDePractica = 1;        // esto sí cambia con el tiempo → let
 
 console.log("Nombre:", nombre);
@@ -122,7 +122,7 @@ console.log("17 % 5 =", 17 % 5);           // módulo: el RESIDUO de 17 ÷ 5 →
 console.log("¿8 es par?", 8 % 2 === 0);    // truco clásico: residuo 0 = par
 
 // OJO: el + con textos no suma, UNE (concatena).
-console.log("Hola, " + nombre);            // "Hola, Astrid"
+console.log("Hola, " + nombre);            // "Hola, Alfredo"
 console.log("5" + 3);                      // "53" (texto + número = texto)
 
 titulo("1.4 · Operadores de comparación");
@@ -156,8 +156,8 @@ console.log("!tieneInternet          →", !tieneInternet);                    /
    condición sea true. Los demás se saltan.               */
 titulo("2.2 · Ejemplo guiado: inscripción");
 
-const nombreEstudiante = "Astrid";
-let edad = 21;
+const nombreEstudiante = "Alfredo";
+let edad = 27;
 let esEstudiante = true;
 
 console.log(typeof nombreEstudiante, typeof edad, typeof esEstudiante);
@@ -453,7 +453,7 @@ function saludar(nombre) {
   return "Hola, " + nombre + "!";
 }
 
-console.log(saludar("Astrid"));     // "Astrid" es el ARGUMENTO
+console.log(saludar("Alfredo"));     // "Alfredo" es el ARGUMENTO
 console.log(saludar("Ana"));        // misma función, otro argumento
 console.log(saludar("Carlos"));
 
@@ -468,7 +468,7 @@ console.log("sumar(3, 4) =", sumar(3, 4));
 function saludarSinReturn(nombre) {
   console.log("Hola desde adentro, " + nombre);
 }
-const resultado = saludarSinReturn("Astrid");
+const resultado = saludarSinReturn("Alfredo");
 console.log("¿Qué devolvió?", resultado);   // undefined
 
 // Dentro de una función podemos usar TODO lo de la Clase 9:

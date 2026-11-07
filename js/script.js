@@ -89,15 +89,15 @@ for (let i = 0; i < secciones.length; i++) {
 seccion("1.3 · Objetos");
 
 const estudiante = {
-  nombre: "Astrid",
-  edad: 21,
+  nombre: "Alfredo",
+  edad: 27,
   nivel: "intermedio",
 };
 // La coma después del último valor es opcional; la dejamos
 // porque así es más fácil agregar otra propiedad después.
 
-console.log(estudiante.nombre);       // "Astrid"  → notación de punto
-console.log(estudiante["edad"]);      // 21        → notación de corchetes
+console.log(estudiante.nombre);       // "Alfredo"  → notación de punto
+console.log(estudiante["edad"]);      // 27        → notación de corchetes
 
 // Los corchetes sirven cuando el NOMBRE de la propiedad está
 // guardado en una variable:
@@ -199,7 +199,7 @@ for (let i = 0; i < secciones.length; i++) {
 seccion("Ejercicio 2 · Mi perfil");
 
 const perfil = {
-  nombre: "Astrid",
+  nombre: "Alfredo",
   curso: "Programación Web Básica",
   nivel: "Intermedio",
 };
