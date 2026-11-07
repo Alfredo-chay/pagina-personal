@@ -156,8 +156,8 @@ console.log("!tieneInternet          →", !tieneInternet);                    /
    condición sea true. Los demás se saltan.               */
 titulo("2.2 · Ejemplo guiado: inscripción");
 
-const nombreEstudiante = "Alfredo";
-let edad = 27;
+const nombreEstudiante = "Astrid";
+let edad = 21;
 let esEstudiante = true;
 
 console.log(typeof nombreEstudiante, typeof edad, typeof esEstudiante);
@@ -453,9 +453,9 @@ function saludar(nombre) {
   return "Hola, " + nombre + "!";
 }
 
-console.log(saludar("Alfredo"));     // "Alfredo" es el ARGUMENTO
-console.log(saludar("Luis"));        // misma función, otro argumento
-console.log(saludar("Antonio"));
+console.log(saludar("Astrid"));     // "Astrid" es el ARGUMENTO
+console.log(saludar("Ana"));        // misma función, otro argumento
+console.log(saludar("Carlos"));
 
 // Una función puede recibir VARIOS parámetros, separados por coma.
 function sumar(a, b) {
@@ -468,7 +468,7 @@ console.log("sumar(3, 4) =", sumar(3, 4));
 function saludarSinReturn(nombre) {
   console.log("Hola desde adentro, " + nombre);
 }
-const resultado = saludarSinReturn("Alfredo");
+const resultado = saludarSinReturn("Astrid");
 console.log("¿Qué devolvió?", resultado);   // undefined
 
 // Dentro de una función podemos usar TODO lo de la Clase 9:
