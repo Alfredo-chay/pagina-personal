@@ -1410,3 +1410,335 @@ body.modo-oscuro footer .en-linea-enlaces a {
   background-color: #e7f5f3;
   border-color: #3fb8af;
 }
+
+/* ===================================================
+   MODO OSCURO COMPLETO (landing + Laboratorio JS)
+   ===================================================
+   CAMBIO NUEVO: en la Clase 12 el modo oscuro solo cubría el body, el
+   main, los h2, la tabla y el footer. El laboratorio tiene muchos más
+   componentes (tarjetas, código, árbol del DOM, checklist, pipeline...)
+   que solo tenían colores claros y se veían como cajas blancas sobre un
+   fondo oscuro. Aquí van los colores oscuros de todos ellos.
+
+   Cómo funciona (igual que en la Clase 12): cada regla empieza con
+   body.modo-oscuro, o sea, solo se aplica cuando JavaScript le puso esa
+   clase al <body>. Paleta: fondo #0f1b2b, tarjetas #1b2d44, bordes
+   #24384f, texto #e3eef2 y turquesa #3fb8af (los mismos de la Clase 12).
+
+   Detalle de especificidad (Clase 4): body.modo-oscuro suma peso a cada
+   selector, así que gana sin usar !important. Pero por eso mismo, las
+   reglas de un ESTADO (favorito, error, hecho, ok...) van DESPUÉS de la
+   regla general de su componente y repiten su clase: así el estado sigue
+   ganando, igual que en el modo claro. */
+
+/* Los controles nativos (casillas, select, barras de desplazamiento)
+   también se dibujan oscuros. */
+body.modo-oscuro {
+  color-scheme: dark;
+}
+
+/* Los enlaces azules por defecto no se leen sobre fondo oscuro. */
+body.modo-oscuro main a {
+  color: #7fd6cd;
+}
+
+/* ---------- Texto y cajas de aviso ---------- */
+
+body.modo-oscuro code {
+  background-color: #24384f;
+  color: #e8b054;
+}
+
+body.modo-oscuro .lab-intro {
+  background-color: #1b2d44;
+}
+
+/* La consola ya era oscura; con borde se distingue del main. */
+body.modo-oscuro .consola-tip {
+  background-color: #0f1b2b;
+  border: 1px solid #24384f;
+}
+
+body.modo-oscuro .aviso-hoy {
+  background-color: #16314a;
+  border-left-color: #3fb8af;
+}
+
+body.modo-oscuro .tarea-clase {
+  background-color: #2a2515;
+}
+
+body.modo-oscuro .tarea-clase h3 {
+  color: #e8b054;
+}
+
+body.modo-oscuro .clase-nueva {
+  border-top-color: #33506e;
+}
+
+body.modo-oscuro .saludo {
+  background-color: #13302f;
+  color: #8fe3d6;
+}
+
+body.modo-oscuro .contador {
+  background-color: #2a2515;
+  color: #e8b054;
+}
+
+body.modo-oscuro .contador-mensaje {
+  color: #9fb3c2;
+}
+
+/* ---------- Tarjetas ---------- */
+
+/* Solo cambiamos los lados izquierdo, derecho e inferior: el borde de
+   arriba tiene un color propio por tipo (ejercicio, reto, commit...). */
+body.modo-oscuro .tarjeta-js {
+  background-color: #1b2d44;
+  border-left-color: #24384f;
+  border-right-color: #24384f;
+  border-bottom-color: #24384f;
+}
+
+body.modo-oscuro .tarjeta-js h3 {
+  color: #7fd6cd;
+}
+
+/* Después de ".tarjeta-js h3" para que estos dos colores ganen. */
+body.modo-oscuro .commit-bien h3 {
+  color: #5fd3b8;
+}
+
+body.modo-oscuro .commit-mal h3 {
+  color: #ff8a7a;
+}
+
+/* Código y "salidas" un tono más oscuros que la tarjeta. */
+body.modo-oscuro .mini-codigo,
+body.modo-oscuro .salida {
+  background-color: #0f1b2b;
+}
+
+/* ---------- Chips de intereses ---------- */
+
+body.modo-oscuro ul li {
+  background-color: #1f3550;
+  color: #cfe6f0;
+  border-color: #2d4a68;
+}
+
+body.modo-oscuro ul li:hover {
+  background-color: #274260;
+}
+
+/* Después del :hover para que el favorito siga dorado al pasar el cursor. */
+body.modo-oscuro ul li.favorito {
+  background-color: #e8b054;
+  color: #17263a;
+  border-color: #c99437;
+}
+
+/* ---------- Tablas ---------- */
+
+/* La 2.ª columna es una "pastilla" (Clase 5)... */
+body.modo-oscuro tbody td:nth-child(2) {
+  background-color: #1f3550;
+  color: #7fd6cd;
+}
+
+/* ...excepto en .tabla-selectores, donde sigue siendo una celda normal. */
+body.modo-oscuro .tabla-selectores tbody td:nth-child(2) {
+  background-color: transparent;
+  color: inherit;
+}
+
+/* ---------- Diagramas: árbol del DOM, vueltas, zonas de Git ---------- */
+
+body.modo-oscuro .arbol {
+  background-color: #1b2d44;
+  border-color: #24384f;
+}
+
+body.modo-oscuro .nodo {
+  color: #7fd6cd;
+}
+
+body.modo-oscuro .nodo.raiz {
+  color: #e3eef2;
+}
+
+body.modo-oscuro .nodo.hoja {
+  color: #cfe0e8;
+  border-left-color: #33506e;
+}
+
+/* .marcado y .nuevo van después de .hoja: algunos nodos tienen las dos. */
+body.modo-oscuro .nodo.marcado {
+  background-color: #2a2515;
+  border-left-color: #e8b054;
+}
+
+body.modo-oscuro .nodo.nuevo {
+  background-color: #13302f;
+  border-left-color: #3fb8af;
+  color: #5fd3b8;
+}
+
+body.modo-oscuro .vueltas span.fin {
+  background-color: #1b2d44;
+  color: #9fb3c2;
+  border-color: #3a5470;
+}
+
+body.modo-oscuro .zona {
+  background-color: #1b2d44;
+  border-color: #3a5470;
+}
+
+body.modo-oscuro .zona:last-child {
+  background-color: #13302f;
+  border-color: #3fb8af;
+}
+
+body.modo-oscuro .zona strong {
+  color: #7fd6cd;
+}
+
+body.modo-oscuro .antes-despues h4 {
+  color: #7fd6cd;
+}
+
+/* ---------- Demo en vivo (Clase 12) ---------- */
+
+body.modo-oscuro .demo-tarjeta {
+  background-color: #1b2d44;
+  border-color: #3a5470;
+}
+
+/* Después de .demo-tarjeta: la tarjeta encendida recupera su borde turquesa. */
+body.modo-oscuro .demo-tarjeta.encendida {
+  background-color: #13302f;
+  border-color: #3fb8af;
+}
+
+/* ---------- Formulario (landing) ---------- */
+
+/* Las casillas de la checklist se excluyen: son nativas y ya quedan
+   oscuras gracias a color-scheme. */
+body.modo-oscuro input:not([type="checkbox"]),
+body.modo-oscuro textarea,
+body.modo-oscuro select {
+  background-color: #0f1b2b;
+  color: #e3eef2;
+  border-color: #3a5470;
+}
+
+/* El foco (Clase 8) con turquesa; no se aplica a los campos con error,
+   que se quedan rojos aunque tengan el foco. */
+body.modo-oscuro input:not([type="checkbox"]):not(.campo-error):focus,
+body.modo-oscuro textarea:not(.campo-error):focus,
+body.modo-oscuro select:focus {
+  border-color: #3fb8af;
+}
+
+body.modo-oscuro input.campo-error,
+body.modo-oscuro textarea.campo-error {
+  border-color: #ff8a7a;
+  background-color: #2a1816;
+}
+
+body.modo-oscuro .mensaje-form.error {
+  background-color: #3a1f1d;
+  color: #ff9a8c;
+  border-left-color: #ff8a7a;
+}
+
+body.modo-oscuro .mensaje-form.exito {
+  background-color: #13302f;
+  color: #8fe3d6;
+  border-left-color: #3fb8af;
+}
+
+/* ---------- Clase 15: checklist y barra de progreso ---------- */
+
+body.modo-oscuro .checklist li {
+  background-color: #1b2d44;
+  border-color: #24384f;
+  border-left-color: #3a5470;
+  color: #e3eef2;
+}
+
+body.modo-oscuro .checklist li:hover {
+  background-color: #22395a;
+}
+
+/* .hecho después de la regla general: la casilla marcada se pinta verde. */
+body.modo-oscuro .checklist li.hecho {
+  background-color: #13302f;
+  border-left-color: #3fb8af;
+}
+
+body.modo-oscuro .checklist li.hecho label {
+  color: #8fe3d6;
+}
+
+body.modo-oscuro .progreso {
+  background-color: #24384f;
+}
+
+body.modo-oscuro .progreso-barra {
+  background-color: #3fb8af;
+}
+
+body.modo-oscuro .progreso-texto {
+  color: #7fd6cd;
+}
+
+/* ---------- Clase 16: generador de URL y despliegue ---------- */
+
+/* Como en las tarjetas, no tocamos el borde de arriba (dorado). */
+body.modo-oscuro .generador {
+  background-color: #1b2d44;
+  border-left-color: #24384f;
+  border-right-color: #24384f;
+  border-bottom-color: #24384f;
+}
+
+body.modo-oscuro .generador label {
+  color: #7fd6cd;
+}
+
+body.modo-oscuro .consejo-url {
+  background-color: #1f3550;
+  color: #cfe6f0;
+}
+
+/* .ok y .aviso después de la regla general, igual que en el modo claro. */
+body.modo-oscuro .consejo-url.ok {
+  background-color: #13302f;
+  color: #8fe3d6;
+}
+
+body.modo-oscuro .consejo-url.aviso {
+  background-color: #2a2515;
+  color: #e8b054;
+}
+
+body.modo-oscuro .paso-pipeline {
+  background-color: #1b2d44;
+  border-color: #33506e;
+}
+
+body.modo-oscuro .paso-pipeline strong {
+  color: #7fd6cd;
+}
+
+body.modo-oscuro .paso-pipeline span {
+  color: #9fb3c2;
+}
+
+body.modo-oscuro .paso-pipeline.final {
+  background-color: #13302f;
+  border-color: #3fb8af;
+}

@@ -332,11 +332,29 @@ badge.style.color = "white";
 seccion("Clase 12 · 1.3 Evento click: modo oscuro");
  
 const botonTema = document.querySelector("#btn-tema");
- 
+
+// CAMBIO NUEVO: si en el laboratorio (o en una visita anterior) se dejó
+// guardado el modo oscuro en localStorage con la clave "tema", lo
+// activamos desde el inicio. try / catch por si el navegador bloquea
+// localStorage (por ejemplo, en una ventana privada): en ese caso la
+// página simplemente empieza en modo claro.
+let temaGuardado = null;
+try {
+  temaGuardado = localStorage.getItem("tema");
+} catch (error) {
+  console.log("No se pudo leer el tema guardado:", error);
+}
+
+if (temaGuardado === "oscuro") {
+  document.body.classList.add("modo-oscuro");
+  botonTema.textContent = "☀️ Modo claro";
+  botonTema.setAttribute("aria-pressed", "true");
+}
+
 botonTema.addEventListener("click", function () {
   // document.body es el <body>: no hace falta querySelector.
   document.body.classList.toggle("modo-oscuro");
- 
+
   // ¿Quedó puesta la clase? Cambiamos el texto del botón según
   // el resultado (if / else de la Clase 9).
   if (document.body.classList.contains("modo-oscuro")) {
@@ -351,7 +369,16 @@ botonTema.addEventListener("click", function () {
   // atributo del HTML desde JavaScript.
   const activo = document.body.classList.contains("modo-oscuro");
   botonTema.setAttribute("aria-pressed", activo ? "true" : "false");
- 
+
+  // CAMBIO NUEVO: guardamos la elección para recordarla (misma clave
+  // "tema" que usa logica.js en el laboratorio, así las dos páginas
+  // comparten la preferencia).
+  try {
+    localStorage.setItem("tema", activo ? "oscuro" : "claro");
+  } catch (error) {
+    console.log("No se pudo guardar el tema:", error);
+  }
+
   console.log("Modo oscuro activo:", document.body.classList.contains("modo-oscuro"));
 });
  

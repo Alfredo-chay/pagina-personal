@@ -741,3 +741,62 @@ inputSitio.addEventListener("input", function () {
  
 console.log("%c¡Clase 16! Este laboratorio ya puede estar publicado en internet 🌐",
   "color:#e8b054; font-weight:bold;");
+
+/* ===================================================
+   CAMBIO NUEVO: MODO OSCURO EN EL LABORATORIO
+   ===================================================
+   Es la misma idea que ya hicimos en index.html (script.js,
+   Clase 12), ahora en practica-js.html:
+   1. Seleccionamos el botón (Clase 11).
+   2. Escuchamos su "click" (addEventListener, Clase 12).
+   3. Con classList ponemos o quitamos la clase "modo-oscuro" del
+      <body>. Todo el diseño oscuro vive en css/styles.css
+      (body.modo-oscuro ...); JavaScript solo decide CUÁNDO.
+
+   Extra: guardamos la elección en localStorage, una pequeña
+   memoria del navegador. Así, si la persona activa el modo
+   oscuro, la página lo recuerda al recargar y también cuando
+   cambia entre index.html y el laboratorio (los dos archivos
+   usan la misma clave: "tema").
+
+   El try / catch es por seguridad: algunos navegadores bloquean
+   localStorage (por ejemplo, en una ventana privada). Si pasa,
+   el botón sigue funcionando; solo que no recuerda la elección. */
+titulo("Modo oscuro · click + classList + localStorage");
+
+const botonTemaLab = document.querySelector("#btn-tema");
+
+// Pone o quita el modo oscuro, cambia el texto del botón y avisa
+// al lector de pantalla con aria-pressed (igual que en script.js).
+function aplicarTema(oscuro) {
+  if (oscuro) {
+    document.body.classList.add("modo-oscuro");
+    botonTemaLab.textContent = "☀️ Modo claro";
+  } else {
+    document.body.classList.remove("modo-oscuro");
+    botonTemaLab.textContent = "🌙 Modo oscuro";
+  }
+  botonTemaLab.setAttribute("aria-pressed", oscuro ? "true" : "false");
+}
+
+// Al cargar la página: ¿había quedado guardado el modo oscuro?
+let temaGuardadoLab = null;
+try {
+  temaGuardadoLab = localStorage.getItem("tema");
+} catch (error) {
+  console.log("No se pudo leer el tema guardado:", error);
+}
+aplicarTema(temaGuardadoLab === "oscuro");
+
+botonTemaLab.addEventListener("click", function () {
+  // Si todavía NO tiene la clase, el nuevo estado será oscuro.
+  const ahoraOscuro = !document.body.classList.contains("modo-oscuro");
+  aplicarTema(ahoraOscuro);
+
+  try {
+    localStorage.setItem("tema", ahoraOscuro ? "oscuro" : "claro");
+  } catch (error) {
+    console.log("No se pudo guardar el tema:", error);
+  }
+  console.log("Modo oscuro activo:", ahoraOscuro);
+});
