@@ -387,7 +387,7 @@ for (let i = 3; i >= 1; i--) {
    de nuestra landing page.                               */
 titulo("1.2 · for recorriendo mis intereses");
 
-const misIntereses = ["Programación", "Diseño", "Videojuegos", "Musica"];
+const misIntereses = ["Programación", "Natación", "Videojuegos", "Música"];
 
 for (let i = 0; i < misIntereses.length; i++) {
   console.log("Interés " + (i + 1) + ": " + misIntereses[i]);
